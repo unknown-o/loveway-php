@@ -6,8 +6,8 @@ if ($templateMode) {
     include('./includes/header.php');
 }
 switch($_GET['page']){
-    case "love":
-        include('./pages/love.php');
+    case "submit":
+        include('./pages/submit.php');
         break;
     case "more":
         include('./pages/more.php');

@@ -8,10 +8,7 @@
             echo getInfo('title') ?></title>
     <meta name="keywords" content="<?php echo getInfo('keywords') ?>">
     <meta name="description" content="<?php echo getInfo('description') ?>">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@1.0.1/dist/css/mdui.min.css" integrity="sha384-cLRrMq39HOZdvE0j6yBojO4+1PrHfB7a9l5qLcmRm/fiWXYY+CndJPmyu5FV/9Tw" crossorigin="anonymous" />
-    <script src="https://cdn.jsdelivr.net/npm/mdui@1.0.1/dist/js/mdui.min.js" integrity="sha384-gCMZcshYKOGRX9r6wbDrvF+TcCCswSHFucUzUPwka+Gr+uHgjlYvkABr95TCOz3A" crossorigin="anonymous"></script>
-    <script src="https://static.llilii.cn/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://static.llilii.cn/libs/jquery/pjax/jquery.pjax.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@1.0.1/dist/css/mdui.min.css"/>
     <style>
         .copyright {
             box-sizing: border-box;
@@ -27,13 +24,16 @@
     </style>
 </head>
 
-<body class="mdui-appbar-with-toolbar  mdui-theme-primary-pink mdui-theme-accent-pink ">
+<body class="mdui-drawer-body-left mdui-bottom-nav-fixed mdui-appbar-with-toolbar mdui-theme-primary-pink mdui-theme-accent-pink mdui-theme-layout-auto mdui-loaded">
     <header class="mdui-appbar mdui-appbar-fixed">
         <audio src="<?php echo getInfo('audio') ?>" autoplay>
             您的浏览器不支持 audio 标签。
         </audio>
+        <div class="mdui-progress" id="isLoading">
+            <div class="mdui-progress-indeterminate"></div>
+        </div>
         <div class="mdui-toolbar mdui-color-theme">
-            <span class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white " mdui-drawer="{target: '#main-drawer', swipe: true}"><i class="mdui-icon material-icons">menu</i></span>
+            <span class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white " onclick="inst.open();"><i class="mdui-icon material-icons">menu</i></span>
             <a href="../" class="mdui-typo-headline mdui-hidden-xs"><?php echo $title; ?></a>
             <div class="mdui-toolbar-spacer"></div>
             <button id="logout" onclick='clearAllCookie()' mdui-tooltip="{content: '退出登录'}" class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white"><i class="mdui-icon material-icons">code</i></button>
@@ -46,15 +46,18 @@
                     <i class="mdui-list-item-icon mdui-icon material-icons">home</i>
                     <div class="mdui-list-item-content">主页</div>
                 </a>
-                <a href="<?php if($REWRITE) echo '/'; else echo '/?page=';?>love" id="userPage" class="mdui-list-item mdui-ripple ">
+                <a href="<?php if ($REWRITE) echo '/';
+                            else echo '/?page='; ?>submit" id="userPage" class="mdui-list-item mdui-ripple ">
                     <i class="mdui-list-item-icon mdui-icon material-icons">favorite</i>
                     <div class="mdui-list-item-content">去表白</div>
                 </a>
-                <a href="/" id="indexPage" class="mdui-list-item mdui-ripple ">
+                <a href="<?php if ($REWRITE) echo '/';
+                            else echo '/?page='; ?>more" id="indexPage" class="mdui-list-item mdui-ripple ">
                     <i class="mdui-list-item-icon mdui-icon material-icons">tag_faces</i>
                     <div class="mdui-list-item-content">更多功能</div>
                 </a>
-                <a href="/" id="indexPage" class="mdui-list-item mdui-ripple ">
+                <a href="<?php if ($REWRITE) echo '/';
+                            else echo '/?page='; ?>about" id="indexPage" class="mdui-list-item mdui-ripple ">
                     <i class="mdui-list-item-icon mdui-icon material-icons">code</i>
                     <div class="mdui-list-item-content">关于本站</div>
                 </a>
@@ -70,13 +73,3 @@
         </div>
     </div>
     <div class="mdui-container" id="pjax-container" style="max-width: 800px; ">
-        Go to <a href="/pjax.php">next page</a>.
-    </div>
-
-    <script>
-        $(document).pjax('a', '#pjax-container')
-        //document.getElementById('<?php if (empty($listName)) echo 'appm';
-                                    else echo $listName; ?>').className += " mdui-list-item-active"
-        //document.getElementById("logout").style.visibility = "<?php if ($logout) echo 'visible';
-                                                                else echo 'hidden'; ?>";
-    </script>
