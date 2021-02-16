@@ -6,7 +6,6 @@ try {
     $stmt = $pdo->prepare("select * from loveway_data");
     if ($stmt->execute()) {
         while ($row = $stmt->fetch()) {
-            echo $row['value'];
 ?>
             <br /><br />
             <div class="mdui-card mdui-hoverable" style="border-radius: 16px">
@@ -47,11 +46,10 @@ try {
                     <?php echo $row['content']; ?>
                 </div>
                 <div class="mdui-card-actions">
-                    <button data-clipboard-text="cn-hk1.rvh2.rainyun.com:1768" class="mdui-btn mdui-btn-icon mdui-float-right">
-                        <i class="mdui-icon material-icons">share</i>
-                    </button>
-                    <a class="copy mdui-btn mdui-btn-icon mdui-float-right" href="javascript:void(0);" data-clipboard-text="<?php echo get_http_type().$_SERVER['PHP_SELF'];if ($REWRITE) echo "/" . $row['id'];
-                                                                                                                            else echo '?id=' . $row['id']; ?>"><i class="mdui-icon material-icons">more</i></a>
+                    <a target="_blank" href="<?php if ($REWRITE) echo "/card/".$row['id']; else echo '/?page=card&id='.$row['id'];?>" class="mdui-btn mdui-btn-icon mdui-float-right">
+                        <i class="mdui-icon material-icons">more</i>
+                    </a>
+                    <a class="copy mdui-btn mdui-btn-icon mdui-float-right" href="javascript:void(0);" data-clipboard-text="<?php echo get_http_type().$_SERVER['SERVER_NAME']; if ($REWRITE) echo "/card/" . $row['id']; else echo '/?page=card&id=' . $row['id']; ?>"><i class="mdui-icon material-icons">share</i></a>
                     </a>
                 </div>
             </div>
