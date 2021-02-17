@@ -16,17 +16,11 @@
     <!-- 卡片的内容 -->
     <div class="mdui-card-content">
         <div class="mdui-typo">
-        <?php echo getInfo('about')?>
+        <?php echo getInfo('about_content')?>
+        <br><br><div class="mdui-divider"></div><br>
+        程序版本:V1.2.4<br />
+        作者博客:<a href="https://www.wunote.cn" class="text-decoration: none;">吴先森的笔记</a><br />作者邮箱:i@mr-wu.top<br>
         </div>
     </div>
-    <!--
-        <div class="mdui-card-actions">
-          <button class="mdui-btn mdui-btn-icon mdui-float-right">
-            <i class="mdui-icon material-icons">share</i>
-          </button>
-          <button class="mdui-btn mdui-btn-icon mdui-float-right">
-            <i class="mdui-icon material-icons">more</i>
-          </button>
-        </div>-->
 </div>
 <br /><br />

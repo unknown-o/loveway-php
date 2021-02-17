@@ -33,22 +33,35 @@
     </div>
 
     <div class="mdui-card-actions">
-        <button :disabled="isdisabledFn" class="mdui-btn mdui-color-theme-accent mdui-ripple mdui-float-right" onclick="submit()">
+        <button id="submitbtn" class="mdui-btn mdui-color-theme-accent mdui-ripple mdui-float-right" onclick="submit()">
             发射！
         </button>
     </div>
     <script>
         function submit() {
+            $("#submitbtn").attr("disabled", true);
             var contact = $("#qq").val();
             var name = $("#name").val();
             var taName = $("#taName").val();
             var image = $("#image").val();
             var introduceTA = $("#introduceTA").val();
             var toTA = $("#toTA").val();
+            var timestamp = this.timestamp = Date.parse(new Date()) / 1000;
+            var key = $.md5(
+                'Kagamine Yes!' +
+                contact +
+                name +
+                taName +
+                image +
+                introduceTA +
+                toTA +
+                timestamp)
             $.ajax({
                 type: 'post',
-                url: 'create',
+                url: '/api/submit.php',
                 data: {
+                    key: key,
+                    timestamp: timestamp,
                     contact: contact,
                     name: name,
                     taName: taName,
@@ -58,16 +71,24 @@
                 },
                 dataType: 'text',
                 success: function(data) {
-                    if (data == 1) {
-                        Swal.fire({
-                            type: 'success',
-                            title: '成功',
-                            text: '工单提交完毕！请在工单列表查看，并耐心等待客服回复',
-                        }).then((result) => {
-                            if (result.value) {
-                                window.location.reload();
-                            }
-                        })
+                    console.log(data)
+                    data = JSON.parse(data);
+                    if (data.code == 1) {
+                        mdui.snackbar({
+                            message: '提交成功！',
+                            position: 'right-top'
+                        });
+                        $("#qq").val("");
+                        $("#name").val("");
+                        $("#taName").val("");
+                        $("#image").val("");
+                        $("#introduceTA").val("");
+                        $("#toTA").val("");
+                    } else {
+                        mdui.snackbar({
+                            message: data.msg,
+                            position: 'right-top'
+                        });
                     }
                     $("#submitbtn").attr("disabled", false);
                 },

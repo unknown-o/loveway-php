@@ -8,7 +8,7 @@
             echo getInfo('title') ?></title>
     <meta name="keywords" content="<?php echo getInfo('keywords') ?>">
     <meta name="description" content="<?php echo getInfo('description') ?>">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@1.0.1/dist/css/mdui.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@1.0.1/dist/css/mdui.min.css" />
     <style>
         .copyright {
             box-sizing: border-box;
@@ -36,7 +36,8 @@
             <span class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white " onclick="inst.open();"><i class="mdui-icon material-icons">menu</i></span>
             <a href="../" class="mdui-typo-headline mdui-hidden-xs"><?php echo $title; ?></a>
             <div class="mdui-toolbar-spacer"></div>
-            <button id="logout" onclick='clearAllCookie()' mdui-tooltip="{content: '退出登录'}" class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white"><i class="mdui-icon material-icons">code</i></button>
+            <!-- 保护版权，请勿删除，如果不明白GPL2.0协议是什么，请查阅GPL2.0 Explain.MD，其中有人话版解释，欢迎查阅！-->
+            <button id="logout" onclick='window.open("https://www.wunote.cn")' mdui-tooltip="{content: '退出登录'}" class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white"><i class="mdui-icon material-icons">code</i></button>
         </div>
     </header>
     <div class="mdui-drawer" id="main-drawer">

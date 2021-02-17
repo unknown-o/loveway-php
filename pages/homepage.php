@@ -1,9 +1,35 @@
+<script>
+    function RandomNumBoth(Min, Max) {
+        var Range = Max - Min;
+        var Rand = Math.random();
+        var num = Min + Math.round(Rand * Range);
+        return num;
+    }
+
+    function randomImage() {
+        var img = event.srcElement;
+        img.onerror = null;
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+            switch (xhr.readyState) {
+                case 4:
+                    if ((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304) {
+                        imgURL = 'https://img.llilii.cn/kagamine/'+JSON.parse(xhr.responseText)['file_name'][RandomNumBoth(0, JSON.parse(xhr.responseText)['file_num'])];
+                        img.src = imgURL;
+                    }
+                    break;
+            }
+        }
+        xhr.open('get', 'https://static.llilii.cn/json/img_list.json');
+        xhr.send(null);
+    }
+</script>
 <?php
 
 $a = 0;
 try {
     $pdo = pdoConnect();
-    $stmt = $pdo->prepare("select * from loveway_data");
+    $stmt = $pdo->prepare("select * from loveway_data ORDER BY time ASC");
     if ($stmt->execute()) {
         while ($row = $stmt->fetch()) {
 ?>
@@ -22,7 +48,7 @@ try {
                     if (!empty($row['image'])) {
                     ?>
                         <div v-if="data.image != ''">
-                            <img style="max-height: 1000px" onerror="randomImage(data.image)" src="<?php echo $row['image']; ?>" />
+                            <img style="max-height: 2000px" onerror="randomImage()" src="<?php echo $row['image']; ?>" />
                         </div>
                     <?php
                     } else {
@@ -46,10 +72,13 @@ try {
                     <?php echo $row['content']; ?>
                 </div>
                 <div class="mdui-card-actions">
-                    <a target="_blank" href="<?php if ($REWRITE) echo "/card/".$row['id']; else echo '/?page=card&id='.$row['id'];?>" class="mdui-btn mdui-btn-icon mdui-float-right">
+                    <a target="_blank" href="<?php if ($REWRITE) echo "/card/" . $row['id'];
+                                                else echo '/?page=card&id=' . $row['id']; ?>" class="mdui-btn mdui-btn-icon mdui-float-right">
                         <i class="mdui-icon material-icons">more</i>
                     </a>
-                    <a class="copy mdui-btn mdui-btn-icon mdui-float-right" href="javascript:void(0);" data-clipboard-text="<?php echo get_http_type().$_SERVER['SERVER_NAME']; if ($REWRITE) echo "/card/" . $row['id']; else echo '/?page=card&id=' . $row['id']; ?>"><i class="mdui-icon material-icons">share</i></a>
+                    <a class="copy mdui-btn mdui-btn-icon mdui-float-right" href="javascript:void(0);" data-clipboard-text="<?php echo get_http_type() . $_SERVER['SERVER_NAME'];
+                                                                                                                            if ($REWRITE) echo "/card/" . $row['id'];
+                                                                                                                            else echo '/?page=card&id=' . $row['id']; ?>"><i class="mdui-icon material-icons">share</i></a>
                     </a>
                 </div>
             </div>
