@@ -29,6 +29,7 @@ switch ($_GET['page']) {
     default:
         include('./pages/homepage.php');
 }
+echo titleChange();
 if ($templateMode && $_GET['page'] != 'card') {
     include('./includes/footer.php');
 }

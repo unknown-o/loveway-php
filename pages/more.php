@@ -9,13 +9,13 @@
 
     <!-- 卡片的标题和副标题 -->
     <div class="mdui-card-primary">
-        <div class="mdui-card-primary-title">更多功能</div>
-        <div class="mdui-card-primary-subtitle">一起来探索本站吧！</div>
+        <div class="mdui-card-primary-title"><?php echo getInfo('more') ?></div>
+        <div class="mdui-card-primary-subtitle">哇！终于等到你来看这个页面！</div>
     </div>
 
     <!-- 卡片的内容 -->
     <div class="mdui-card-content">
-        本站更多功能正在开发中...<br />预计我们将会支持以下功能:<br />1.支持一键生成表白卡片<br />2.支持点赞表白<br />3.支持表白搜索<br />
+        <?php echo getInfo('more_content') ?>
     </div>
     <!--
         <div class="mdui-card-actions">

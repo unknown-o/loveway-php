@@ -4,4 +4,6 @@ $DB_HOST="127.0.0.1";
 $DB_NAME="loveway";
 $DB_USER="loveway";
 $DB_PASS="trmLrmj3CkpS7G62";
+$ADMIN_USER="kagamine";
+$ADMIN_PASS="kagamine1234";
 ?>

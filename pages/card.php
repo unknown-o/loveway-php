@@ -16,6 +16,32 @@
     <audio src="<?php echo getInfo('audio') ?>" autoplay>
         您的浏览器不支持 audio 标签。
     </audio>
+    <script>
+        function RandomNumBoth(Min, Max) {
+            var Range = Max - Min;
+            var Rand = Math.random();
+            var num = Min + Math.round(Rand * Range);
+            return num;
+        }
+
+        function randomImage() {
+            var img = event.srcElement;
+            img.onerror = null;
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                switch (xhr.readyState) {
+                    case 4:
+                        if ((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304) {
+                            imgURL = 'https://img.llilii.cn/kagamine/' + JSON.parse(xhr.responseText)['file_name'][RandomNumBoth(0, JSON.parse(xhr.responseText)['file_num'])];
+                            img.src = imgURL;
+                        }
+                        break;
+                }
+            }
+            xhr.open('get', 'https://static.llilii.cn/json/img_list.json');
+            xhr.send(null);
+        }
+    </script>
 </head>
 <div class="mdui-container" style="max-width: 400px; ">
     <br><br><br><br>
@@ -44,7 +70,7 @@
                         <?php
                         if (!empty($row['image'])) {
                         ?>
-                            <img style="max-height: 1000px" onerror="randomImage(data.image)" src="<?php echo $row['image']; ?>" />
+                            <img style="max-height: 1000px" onerror="randomImage()" src="<?php echo $row['image']; ?>" />
                         <?php
                         } else {
                         ?>

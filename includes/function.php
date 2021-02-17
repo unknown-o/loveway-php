@@ -10,6 +10,13 @@ function get_http_type()
     return $http_type;
 }
 
+function titleChange(){
+    $title='';
+    if (!empty(getInfo($_GET['page']))) $title = getInfo($_GET['page']) . ' - ';
+    $title = $title . getInfo('title');
+    return '<script>$(document).attr("title","'.$title.'");</script>';
+}
+
 function getInfo($name)
 {
     try{
