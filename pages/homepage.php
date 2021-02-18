@@ -108,7 +108,7 @@ if ($flag) {
             <div class="mdui-card-primary-subtitle">这里还没有任何表白呢！</div>
         </div>
         <div class="mdui-card-content">
-            快点击“去表白”去像喜欢的人表白吧！<br><br>
+            快点击“去表白”去向喜欢的人表白吧！<br><br>
         </div>
     </div>
 <?php

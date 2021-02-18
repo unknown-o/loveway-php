@@ -1,7 +1,7 @@
 </div>
 <script src="https://cdn.jsdelivr.net/npm/mdui@1.0.1/dist/js/mdui.min.js"></script>
 <script>
-    $(document).pjax('a', '#pjax-container')
+    $(document).pjax('a', '#pjax-container',{'timeout':false})
     $("#isLoading").hide()
     var inst = new mdui.Drawer('#main-drawer');
     $(document).on('pjax:send', function() {

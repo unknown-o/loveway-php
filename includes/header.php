@@ -1,3 +1,6 @@
+<?php 
+error_reporting(0);
+?>
 <!DOCTYPE html>
 <html lang="zh-CN">
 
@@ -32,7 +35,7 @@
 
 <body class="mdui-drawer-body-left mdui-bottom-nav-fixed mdui-appbar-with-toolbar mdui-theme-primary-pink mdui-theme-accent-pink mdui-theme-layout-auto mdui-loaded">
     <header id="appbar" class="mdui-appbar mdui-appbar-fixed">
-        <audio src="<?php echo getInfo('audio') ?>" autoplay>
+        <audio src="<?php echo getInfo('audio') ?>" loop autoplay>
             您的浏览器不支持 audio 标签。
         </audio>
         <div class="mdui-progress" id="isLoading">
