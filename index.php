@@ -26,6 +26,13 @@ switch ($_GET['page']) {
     case "card":
         include('./pages/card.php');
         break;
+    case "admin":
+        if ($_COOKIE['loveway_token'] == md5($ADMIN_USER . $ADMIN_PASS . 'KAGAMINE WORLD!' . date('Y-m-d', time()))) {
+            include('./pages/admin.php');
+        } else {
+            include('./pages/login.php');
+        }
+        break;
     default:
         include('./pages/homepage.php');
 }

@@ -1,8 +1,3 @@
-<?php
-include('../config.php');
-include('../includes/function.php');
-include('../includes/header.php');
-?>
 <br /><br />
 <div class="mdui-card mdui-hoverable" style="border-radius: 16px">
     <div class="mdui-card-primary">
@@ -39,35 +34,78 @@ include('../includes/header.php');
             <label class="mdui-textfield-label">关于本站页面（请使用html格式）</label>
             <textarea id="about_content" class="mdui-textfield-input" rows="4" placeholder="<?php echo getInfo('about_content') ?>"></textarea>
         </div>
-        <br>
-        <div class="mdui-card-primary-subtitle">如果要修改表白墙表白内容，请直接去数据库修改，真的懒得写管理、删除表白内容了（老咸鱼了）</div>
-        <div class="mdui-card-primary-subtitle">用户群：608265912（注意，这不是我建立的群。这是我借别人的用户群。所以...有些时候可能不能解决您提出的问题，如果是配置问题，可以在此群提问，如果是程序bug等问题，建议通过我的邮箱与我联系！）；我的邮箱：i@mr-wu.top(推荐使用邮箱与我联系)</div>
     </div>
 
     <div class="mdui-card-actions">
-        <button id="submitbtn" class="mdui-btn mdui-color-theme-accent mdui-ripple mdui-float-right" onclick="submit()">
-            发射！
+        <button id="submitbtn" style="border-radius: 8px" class="mdui-btn mdui-color-theme-accent mdui-ripple" onclick="logout()">
+            退出登录
+        </button>
+        <button id="submitbtn" style="border-radius: 8px" class="mdui-btn mdui-color-theme-accent mdui-ripple mdui-float-right" onclick="submit()">
+            保存数据
+        </button>
+        <button id="submitbtn" style="border-radius: 8px" class="mdui-btn mdui-color-theme-accent mdui-ripple mdui-float-right" onclick="getHelp()">
+            使用帮助
         </button>
     </div>
     <script>
+        function logout() {
+            setCookie('loveway_token', "kagamine yes!", -1);
+            mdui.snackbar({
+                message: "登出成功！页面即将刷新！",
+                position: 'right-top'
+            });
+            setTimeout(function() {
+                location.reload()
+            }, 1500);
+        }
+
+        function setCookie(cname, cvalue, exdays) {
+            var d = new Date();
+            d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+            var expires = "expires=" + d.toUTCString();
+            document.cookie = cname + "=" + cvalue + "; " + expires;
+        }
+
         function submit() {
             configArr = ['title', 'keywords', 'description', 'audio', 'more', 'more_content', 'about_content'];
+            $changed = false;
             for (let i = 0; i < configArr.length; i++) {
-
                 if ($("#" + configArr[i]).val() != "") {
-                    value=$("#" + configArr[i]).val();
-                    request(configArr[i],value);
+                    $changed = true;
+                    value = $("#" + configArr[i]).val();
+                    request(configArr[i], value);
+                }
             }
+            mdui.snackbar({
+                message: "没有提交任何数据更新呢！",
+                position: 'right-top'
+            });
         }
 
+        function getHelp() {
+            mdui.snackbar({
+                message: "正在加载帮助信息中...",
+                position: 'right-top'
+            });
+            $.get("https://static.llilii.cn/json/loveway_help.json", function(data, status) {
+                mdui.snackbar({
+                    message: "加载成功！",
+                    position: 'right-top'
+                });
+                mdui.dialog({
+                    title: data.title,
+                    content: data.content,
+                });
+            });
         }
 
-        function request(name,value) {
+        function request(name, value) {
             $("#submitbtn").attr("disabled", true);
             $.ajax({
                 type: 'post',
                 url: '/api/admin.php',
                 data: {
+                    mode: "updateConfig",
                     name: name,
                     value: value
                 },
@@ -77,15 +115,9 @@ include('../includes/header.php');
                     data = JSON.parse(data);
                     if (data.code == 1) {
                         mdui.snackbar({
-                            message: '提交成功！',
+                            message: "数据更新成功！",
                             position: 'right-top'
                         });
-                        $("#qq").val("");
-                        $("#name").val("");
-                        $("#taName").val("");
-                        $("#image").val("");
-                        $("#introduceTA").val("");
-                        $("#toTA").val("");
                     } else {
                         mdui.snackbar({
                             message: data.msg,
@@ -97,11 +129,10 @@ include('../includes/header.php');
                 error: function(data) {
                     var errors = data.responseJSON;
                     $.each(errors.errors, function(key, value) {
-                        Swal.fire({
-                            type: 'error',
-                            title: '错误',
-                            text: value,
-                        })
+                        mdui.snackbar({
+                            message: "出现了一个未知错误",
+                            position: 'right-top'
+                        });
                     });
                 },
             });
@@ -109,6 +140,3 @@ include('../includes/header.php');
     </script>
 </div>
 <br /><br />
-<?php
-include('../includes/footer.php');
-?>

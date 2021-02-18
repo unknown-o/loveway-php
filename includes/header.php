@@ -12,6 +12,7 @@
     <script src="https://static.llilii.cn/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://static.llilii.cn/libs/pjax/jquery.pjax.js"></script>
     <script src="https://static.llilii.cn/libs/md5/jquery.md5.js"></script>
+    <script src="https://static.llilii.cn/libs/loveway/main.js"></script>
     <script src="https://static.llilii.cn/libs/clipboard/clipboard.min.js"></script>
     <style>
         .copyright {
@@ -68,7 +69,7 @@
             </div>
             <div class="copyright">
                 <div class="mdui-typo">
-                    <p class="mdui-typo-caption-opacity">© 2021 UnknownO</p>
+                    <p class="mdui-typo-caption-opacity">© 2021 <a href="https://www.wunote.cn" target="_blank">UnknownO</a></p>
                     <p class="mdui-typo-caption-opacity">
                         Powered by <a href="https://mdui.org" target="_blank">MDUI</a>
                     </p>

@@ -33,7 +33,7 @@
     </div>
 
     <div class="mdui-card-actions">
-        <button id="submitbtn" class="mdui-btn mdui-color-theme-accent mdui-ripple mdui-float-right" onclick="submit()">
+        <button id="submitbtn" style="border-radius: 8px" class="mdui-btn mdui-color-theme-accent mdui-ripple mdui-float-right" onclick="submit()">
             发射！
         </button>
     </div>
@@ -52,6 +52,7 @@
                 contact +
                 name +
                 taName +
+                image +
                 introduceTA +
                 toTA +
                 timestamp)
@@ -94,11 +95,10 @@
                 error: function(data) {
                     var errors = data.responseJSON;
                     $.each(errors.errors, function(key, value) {
-                        Swal.fire({
-                            type: 'error',
-                            title: '错误',
-                            text: value,
-                        })
+                        mdui.snackbar({
+                            message: "出现了一个未知错误",
+                            position: 'right-top'
+                        });
                     });
                 },
             });
