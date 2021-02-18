@@ -7,7 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="theme-color" content="#3f51b5">
     <meta name="mdui-main-color" content="#3f51b5">
-    <Title>页面走丢啦 - <?php echo getInfo('title') ?></Title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@1.0.1/dist/css/mdui.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/mdui@1.0.1/dist/js/mdui.min.js"></script>
+    <Title>出错啦</Title>
     <style>
         .mdui-background-404 {
             position: absolute;
@@ -61,12 +63,12 @@
 
 <body class="mdui-theme-primary-indigo mdui-theme-accent-pink">
     <div class="mdui-color-theme mdui-typo-display-4 mdui-valign mdui-background-404">
-        <span>404<span class="mdui-typo-headline">这个页面似乎找不到了哦</span></span>
+        <span>Err<span class="mdui-typo-headline">连接数据库出现了一个错误</span></span>
     </div>
     <div class="mdui-valign mdui-main-404">
         <div>
-            <a href="/" class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent">返回主页面</a>
-            <a href="../" class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent">返回上一级</a>
+            <a href="javascript:mdui.alert('如果您是本站管理，请检查您是否导入loveway.sql到本站数据库，并且是否config.php中的配置项，使其能正常登录数据库。如果您无法解决此问题，可以与本程序开发者联系<br>如果您是普通访客，请尝试刷新本页，并尝试与此站点的管理员联系。<br>-----此条消息由一位热爱二次元的童鞋编辑')" class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent">这是为什么</a>
+            <a href="javascript:location.reload()" class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent">刷新本页面</a>
             <div>
             </div>
 
@@ -75,3 +77,6 @@
 </body>
 
 </html>
+<?php
+exit();
+?>

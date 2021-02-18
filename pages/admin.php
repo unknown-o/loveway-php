@@ -68,16 +68,14 @@
 
         function submit() {
             configArr = ['title', 'keywords', 'description', 'audio', 'more', 'more_content', 'about_content'];
-            $changed = false;
             for (let i = 0; i < configArr.length; i++) {
                 if ($("#" + configArr[i]).val() != "") {
-                    $changed = true;
                     value = $("#" + configArr[i]).val();
                     request(configArr[i], value);
                 }
             }
             mdui.snackbar({
-                message: "没有提交任何数据更新呢！",
+                message: "提交中...",
                 position: 'right-top'
             });
         }

@@ -22,6 +22,7 @@ if (empty($QueryArr)) {
     $QueryArr = $_GET;
 }
 $templateMode = empty($QueryArr['_pjax']);
+$siteTitle=getInfo('title');
 if ($templateMode) {
     include('./includes/header.php');
 }

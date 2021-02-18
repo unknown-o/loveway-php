@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
-    <title><?php if (!empty(getInfo($_GET['page']))) echo getInfo($_GET['page']) . ' - ';
-            echo getInfo('title'); ?></title>
+    <title><?php $subPageName=$_GET['page']; if (!empty(getInfo($subPageName))) echo getInfo($subPageName) . ' - ';
+            echo $siteTitle ?></title>
     <meta name="keywords" content="<?php echo getInfo('keywords') ?>">
     <meta name="description" content="<?php echo getInfo('description') ?>">
     <link rel="stylesheet" href="https://static.llilii.cn/css/other/background.css"/>
@@ -40,7 +40,7 @@
         </div>
         <div class="mdui-toolbar mdui-color-theme">
             <span class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white " onclick="inst.toggle();"><i class="mdui-icon material-icons">menu</i></span>
-            <a href="../" class="mdui-typo-headline mdui-hidden-xs"><?php echo getInfo('title'); ?></a>
+            <a href="../" class="mdui-typo-headline mdui-hidden-xs"><?php echo $siteTitle; ?></a>
             <div class="mdui-toolbar-spacer"></div>
             <button id="logout" onclick='window.open("https://www.wunote.cn")' mdui-tooltip="{content: '吴先森的笔记'}" class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white"><i class="mdui-icon material-icons">code</i></button>
         </div>
@@ -70,6 +70,8 @@
             </div>
             <div class="copyright">
                 <div class="mdui-typo">
+                    <!-- 本程序使用GPL2.0协议开源，请遵守此协议，请勿删除本处版权，否则原作者保留一切法律权利 -->
+                    <!-- 如果看不懂GPL2.0协议请自行查看根目录人话版解释。如果想删除本处版权的请直接不要使用本程序。 -->
                     <p class="mdui-typo-caption-opacity">© 2021 <a href="https://www.wunote.cn" target="_blank">UnknownO</a></p>
                     <p class="mdui-typo-caption-opacity">
                         Powered by <a href="https://mdui.org" target="_blank">MDUI</a>

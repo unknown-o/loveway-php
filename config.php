@@ -4,7 +4,7 @@ $DB_HOST="127.0.0.1";
 //数据库名
 $DB_NAME="loveway";
 //数据库登录用户名
-$DB_USER="l1oveway";
+$DB_USER="loveway";
 //数据库登录密码
 $DB_PASS="trmLrmj3CkpS7G62";
 //管理后台账号

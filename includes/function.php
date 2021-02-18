@@ -29,7 +29,7 @@ function getInfo($name)
             return 'database connection failed';
         }
     } catch (Exception $e) {
-        return 'database connection failed';
+        include('./pages/err.php');
         //echo $e->getMessage();
     }
 }
