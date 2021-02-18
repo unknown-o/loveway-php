@@ -1,0 +1,31 @@
+#background .bg-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: calc(100vh);
+    display: none;
+    overflow: hidden;
+    z-index: -1;
+    -webkit-background-size: cover !important;
+    -moz-background-size: cover !important;
+    -o-background-size: cover !important;
+    background-size: cover !important;
+}
+
+#background-ie {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: calc(100vh);
+    overflow: hidden;
+    background-color: #211f1f;
+}
+
+
+/*
+<div id="background">
+    <div class="bg-image" style="background: url('//static.llilii.cn/images/kagamine/32639516_p2.jpg') no-repeat center center; display: block;"></div>
+</div>
+*/

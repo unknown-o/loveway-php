@@ -9,11 +9,26 @@
 // i@mr-wu.top
 include('./config.php');
 include('./includes/function.php');
-$templateMode = empty($_GET['_pjax']);
-if ($templateMode && $_GET['page'] != 'card') {
+if ($REWRITE) {
+    $pageName = explode("/", $_GET['uri'])[1];
+    if ($pageName == "card") {
+        $cardID = explode("/", $_GET['uri'])[2];
+    }
+    parse_str($_GET['args'], $QueryArr);
+} else {
+    $pageName = $_GET['page'];
+}
+if (empty($QueryArr)) {
+    $QueryArr = $_GET;
+}
+$templateMode = empty($QueryArr['_pjax']);
+if ($templateMode) {
     include('./includes/header.php');
 }
-switch ($_GET['page']) {
+switch ($pageName) {
+    case "":
+        include('./pages/homepage.php');
+        break;
     case "submit":
         include('./pages/submit.php');
         break;
@@ -24,6 +39,7 @@ switch ($_GET['page']) {
         include('./pages/about.php');
         break;
     case "card":
+        hideSomethings();
         include('./pages/card.php');
         break;
     case "admin":
@@ -34,9 +50,11 @@ switch ($_GET['page']) {
         }
         break;
     default:
-        include('./pages/homepage.php');
+        hideSomethings();
+        include('./pages/404.php');
+
 }
 echo titleChange();
-if ($templateMode && $_GET['page'] != 'card') {
+if ($templateMode) {
     include('./includes/footer.php');
 }

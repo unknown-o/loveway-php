@@ -14,7 +14,7 @@
             switch (xhr.readyState) {
                 case 4:
                     if ((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304) {
-                        imgURL = 'https://img.llilii.cn/kagamine/'+JSON.parse(xhr.responseText)['file_name'][RandomNumBoth(0, JSON.parse(xhr.responseText)['file_num'])];
+                        imgURL = 'https://img.llilii.cn/kagamine/' + JSON.parse(xhr.responseText)['file_name'][RandomNumBoth(0, JSON.parse(xhr.responseText)['file_num'])];
                         img.src = imgURL;
                     }
                     break;
@@ -26,23 +26,21 @@
 </script>
 <?php
 
-$a = 0;
+$flag = true;
 try {
     $pdo = pdoConnect();
     $stmt = $pdo->prepare("select * from loveway_data ORDER BY time DESC");
     if ($stmt->execute()) {
         while ($row = $stmt->fetch()) {
+            $flag = false;
 ?>
             <br /><br />
             <div class="mdui-card mdui-hoverable" style="border-radius: 16px">
-                <!-- 卡片头部，包含头像、标题、副标题 -->
                 <div class="mdui-card-header">
                     <img class="mdui-card-header-avatar" src="https://q1.qlogo.cn/g?b=qq&s=640&nk=<?php echo $row['contact']; ?>" />
                     <div class="mdui-card-header-title"><?php echo $row['confessor']; ?></div>
                     <div class="mdui-card-header-subtitle"><?php echo $row['time']; ?></div>
                 </div>
-
-                <!-- 卡片的媒体内容，可以包含图片、视频等媒体内容，以及标题、副标题 -->
                 <div class="mdui-card-media">
                     <?php
                     if (!empty($row['image'])) {
@@ -56,34 +54,40 @@ try {
                         <div class="mdui-divider"></div>
                     <?php } ?>
                 </div>
-
-
-
-                <!-- 卡片的标题和副标题 -->
                 <div class="mdui-card-primary">
                     <div class="mdui-card-primary-title">To <?php echo $row['to_who']; ?></div>
                     <div class="mdui-card-primary-subtitle">
                         <?php echo $row['introduction']; ?>
                     </div>
                 </div>
-
-                <!-- 卡片的内容 -->
                 <div class="mdui-card-content">
                     <?php echo $row['content']; ?>
                 </div>
                 <div class="mdui-card-actions">
-                    <a target="_blank" href="<?php if ($REWRITE) echo "/card/" . $row['id'];
-                                                else echo '/?page=card&id=' . $row['id']; ?>" class="mdui-btn mdui-btn-icon mdui-float-right">
+                    <a target="_blank" href="
+                    <?php
+                    if ($REWRITE) {
+                        echo "/card/" . $row['id'];
+                    } else {
+                        echo '/?page=card&id=' . $row['id'];
+                    }
+                    ?>" class="mdui-btn mdui-btn-icon mdui-float-right">
                         <i class="mdui-icon material-icons">more</i>
                     </a>
-                    <a class="copy mdui-btn mdui-btn-icon mdui-float-right" href="javascript:void(0);" data-clipboard-text="<?php echo get_http_type() . $_SERVER['SERVER_NAME'];
-                                                                                                                            if ($REWRITE) echo "/card/" . $row['id'];
-                                                                                                                            else echo '/?page=card&id=' . $row['id']; ?>"><i class="mdui-icon material-icons">share</i></a>
+                    <a class="copy mdui-btn mdui-btn-icon mdui-float-right" href="javascript:void(0);" data-clipboard-text="
+                    <?php
+                    echo get_http_type() . $_SERVER['SERVER_NAME'];
+                    if ($REWRITE) {
+                        echo "/card/" . $row['id'];
+                    } else {
+                        echo '/?page=card&id=' . $row['id'];
+                    }
+                    ?>"><i class="mdui-icon material-icons">share</i></a>
                     </a>
                 </div>
             </div>
 
-<?php
+    <?php
         }
     } else {
         return 'database connection failed';
@@ -91,5 +95,22 @@ try {
 } catch (Exception $e) {
     return 'database connection failed';
     //echo $e->getMessage();
+}
+if ($flag) {
+    ?>
+    <br /><br />
+    <div class="mdui-card mdui-hoverable" style="border-radius: 16px">
+        <div class="mdui-card-media">
+            <img style="max-height: 2000px" onerror="randomImage()" src="" />
+        </div>
+        <div class="mdui-card-primary">
+            <div class="mdui-card-primary-title">啊噢！</div>
+            <div class="mdui-card-primary-subtitle">这里还没有任何表白呢！</div>
+        </div>
+        <div class="mdui-card-content">
+            快点击“去表白”去像喜欢的人表白吧！<br><br>
+        </div>
+    </div>
+<?php
 }
 ?>

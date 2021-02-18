@@ -1,5 +1,4 @@
 <?php
-
 function pdoConnect(){
     return new PDO('mysql:host=' . $GLOBALS['DB_HOST'] . ';dbname=' . $GLOBALS['DB_NAME'], $GLOBALS['DB_USER'], $GLOBALS['DB_PASS']);
 }
@@ -34,3 +33,12 @@ function getInfo($name)
         //echo $e->getMessage();
     }
 }
+
+function hideSomethings(){
+    echo "<script>";
+    echo "$('#appbar').css('display','none');";
+    echo "$('#main-drawer').css('display','none');";
+    echo "setTimeout(function(){inst.close();},50);";
+    echo "</script>";
+}
+?>
