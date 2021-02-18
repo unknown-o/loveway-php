@@ -13,31 +13,31 @@ include('../includes/header.php');
     <div class="mdui-card-content">
         <div class="mdui-textfield">
             <label class="mdui-textfield-label">表白墙标题</label>
-            <textarea id="qq" class="mdui-textfield-input" placeholder="未知表白墙"></textarea>
+            <textarea id="title" class="mdui-textfield-input" placeholder="<?php echo getInfo('title') ?>"></textarea>
         </div>
         <div class="mdui-textfield">
             <label class="mdui-textfield-label">SEO关键词</label>
-            <textarea id="name" class="mdui-textfield-input" placeholder="未知表白墙,表白墙"></textarea>
+            <textarea id="keywords" class="mdui-textfield-input" placeholder="<?php echo getInfo('keywords') ?>"></textarea>
         </div>
         <div class="mdui-textfield">
             <label class="mdui-textfield-label">SEO简介</label>
-            <textarea id="taName" class="mdui-textfield-input" placeholder="一条咸鱼使用MDUI开发的一款表白墙（不会告诉你开发动力是双子，23333）"></textarea>
+            <textarea id="description" class="mdui-textfield-input" placeholder="<?php echo getInfo('description') ?>"></textarea>
         </div>
         <div class="mdui-textfield">
             <label class="mdui-textfield-label">网站音频</label>
-            <textarea id="image" class="mdui-textfield-input" placeholder="https://static.llilii.cn/music/OYBO1IgowMLqw1wv.mp3"></textarea>
+            <textarea id="audio" class="mdui-textfield-input" placeholder="<?php echo getInfo('audio') ?>"></textarea>
         </div>
         <div class="mdui-textfield">
             <label class="mdui-textfield-label">自定义页面标题（本站右侧应用栏的第三个列表）</label>
-            <textarea id="introduceTA" class="mdui-textfield-input" placeholder="更多功能"></textarea>
+            <textarea id="more" class="mdui-textfield-input" placeholder="<?php echo getInfo('more') ?>"></textarea>
         </div>
         <div class="mdui-textfield">
             <label class="mdui-textfield-label">自定义页面（请使用html格式、本站右侧应用栏的第三个列表）</label>
-            <textarea id="toTA" class="mdui-textfield-input" rows="4" placeholder="其实....开发这个表白墙的初衷...<br>其实是主要是为了让更多人知道镜音双子，233<br>（你应该发现了整个表白墙的图片都是镜音连和镜音铃的，且这些图片都没有更换的设置，2333，要你手动改代码<br>虽然现在镜音双子基本上活成了小透明，连B站某些V家爱好者自己办的节目，都一首双子的歌都没有（虽然其他一些不知名虚拟歌姬好像也没有的也没有），5555555，只有双子和初音、GUMI的绘师作品集<br>另外吐槽一下B站，把VTB和虚拟歌姬混为一谈，有些VTB还自称“虚拟歌姬”，真的是...无语了，真的想回到那个有一首初音或其他虚拟歌姬的歌就能全站沸腾的局面了<br>现在甚至希望B站不要破圈，不要引入那些乱七八糟的流量明星进来（虽然叔叔我呀，最讨厌不能赚钱的东西了）<br>"></textarea>
+            <textarea id="more_content" class="mdui-textfield-input" rows="4" placeholder="<?php echo getInfo('more_content') ?>"></textarea>
         </div>
         <div class="mdui-textfield">
             <label class="mdui-textfield-label">关于本站页面（请使用html格式）</label>
-            <textarea id="toTA" class="mdui-textfield-input" rows="4" placeholder="欢迎来到由吴先森开发的表白墙！<br />本站使用MDUI开发<br /><br />另外...说一下本表白墙的服务条款吧...<br />1.发言请遵守当地法律法规和学校规章制度，吴先森的表白墙保留对于发布不良信息和人身攻击的自然人追究法律责任的权利。<br />2.如发现有消息对个人生活产生困扰或想要获取告白者的联系方式，请联系网站管理员。<br />3.让我当大号电灯泡和吃点狗粮吧，23333333333"></textarea>
+            <textarea id="about_content" class="mdui-textfield-input" rows="4" placeholder="<?php echo getInfo('about_content') ?>"></textarea>
         </div>
         <br>
         <div class="mdui-card-primary-subtitle">如果要修改表白墙表白内容，请直接去数据库修改，真的懒得写管理、删除表白内容了（老咸鱼了）</div>
@@ -51,35 +51,25 @@ include('../includes/header.php');
     </div>
     <script>
         function submit() {
+            configArr = ['title', 'keywords', 'description', 'audio', 'more', 'more_content', 'about_content'];
+            for (let i = 0; i < configArr.length; i++) {
+
+                if ($("#" + configArr[i]).val() != "") {
+                    value=$("#" + configArr[i]).val();
+                    request(configArr[i],value);
+            }
+        }
+
+        }
+
+        function request(name,value) {
             $("#submitbtn").attr("disabled", true);
-            var contact = $("#qq").val();
-            var name = $("#name").val();
-            var taName = $("#taName").val();
-            var image = $("#image").val();
-            var introduceTA = $("#introduceTA").val();
-            var toTA = $("#toTA").val();
-            var timestamp = this.timestamp = Date.parse(new Date()) / 1000;
-            var key = $.md5(
-                'Kagamine Yes!' +
-                contact +
-                name +
-                taName +
-                image +
-                introduceTA +
-                toTA +
-                timestamp)
             $.ajax({
                 type: 'post',
-                url: '/api/submit.php',
+                url: '/api/admin.php',
                 data: {
-                    key: key,
-                    timestamp: timestamp,
-                    contact: contact,
                     name: name,
-                    taName: taName,
-                    image: image,
-                    introduceTA: introduceTA,
-                    toTA: toTA
+                    value: value
                 },
                 dataType: 'text',
                 success: function(data) {

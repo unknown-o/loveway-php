@@ -29,7 +29,7 @@
 $a = 0;
 try {
     $pdo = pdoConnect();
-    $stmt = $pdo->prepare("select * from loveway_data ORDER BY time ASC");
+    $stmt = $pdo->prepare("select * from loveway_data ORDER BY time DESC");
     if ($stmt->execute()) {
         while ($row = $stmt->fetch()) {
 ?>

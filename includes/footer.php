@@ -1,9 +1,5 @@
 </div>
 <script src="https://cdn.jsdelivr.net/npm/mdui@1.0.1/dist/js/mdui.min.js"></script>
-<script src="https://static.llilii.cn/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://static.llilii.cn/libs/pjax/jquery.pjax.js"></script>
-<script src="https://static.llilii.cn/libs/md5/jquery.md5.js"></script>
-<script src="https://static.llilii.cn/libs/clipboard/clipboard.min.js"></script>
 <script>
     $(document).pjax('a', '#pjax-container')
     $("#isLoading").hide()

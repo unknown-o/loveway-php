@@ -52,7 +52,6 @@
                 contact +
                 name +
                 taName +
-                image +
                 introduceTA +
                 toTA +
                 timestamp)

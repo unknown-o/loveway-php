@@ -9,6 +9,10 @@
     <meta name="keywords" content="<?php echo getInfo('keywords') ?>">
     <meta name="description" content="<?php echo getInfo('description') ?>">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@1.0.1/dist/css/mdui.min.css" />
+    <script src="https://static.llilii.cn/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://static.llilii.cn/libs/pjax/jquery.pjax.js"></script>
+    <script src="https://static.llilii.cn/libs/md5/jquery.md5.js"></script>
+    <script src="https://static.llilii.cn/libs/clipboard/clipboard.min.js"></script>
     <style>
         .copyright {
             box-sizing: border-box;
@@ -33,8 +37,8 @@
             <div class="mdui-progress-indeterminate"></div>
         </div>
         <div class="mdui-toolbar mdui-color-theme">
-            <span class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white " onclick="inst.open();"><i class="mdui-icon material-icons">menu</i></span>
-            <a href="../" class="mdui-typo-headline mdui-hidden-xs"><?php echo $title; ?></a>
+            <span class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white " onclick="inst.toggle();"><i class="mdui-icon material-icons">menu</i></span>
+            <a href="../" class="mdui-typo-headline mdui-hidden-xs"><?php echo getInfo('title'); ?></a>
             <div class="mdui-toolbar-spacer"></div>
             <button id="logout" onclick='window.open("https://www.wunote.cn")' mdui-tooltip="{content: '吴先森的笔记'}" class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white"><i class="mdui-icon material-icons">code</i></button>
         </div>
