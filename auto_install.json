@@ -4,5 +4,9 @@
     "db_config": "/config.php",
     "admin_username": "kagamine",
     "admin_password": "kagamine1234",
-    "run_path": "/"
+    "run_path": "/",
+    "php_ext": "",
+    "chmod": [],
+    "remove_file": [],
+    "enable_functions": []
 }
