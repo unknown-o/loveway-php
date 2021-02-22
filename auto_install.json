@@ -1,0 +1,12 @@
+{
+    "success_url": "/?page=admin",
+    "php_versions": "56,70,71,72,73,74,80",
+    "db_config": "/config.php",
+    "admin_username": "kagamine",
+    "admin_password": "kagamine1234",
+    "run_path": "/",
+    "php_ext": "",
+    "chmod": [],
+    "remove_file": [],
+    "enable_functions": []
+}
