@@ -14,7 +14,7 @@
 
 作者博客：https://www.wunote.cn
 
-### **本项目的官方Git仓库**
+### 本项目的官方Git仓库
 
 内网仓库：[https://git.mr-wu.top/UnknownO/loveway-php](https://git.mr-wu.top/UnknownO/loveway-php)
 
