@@ -1,7 +1,9 @@
 </div>
 <script src="https://cdn.jsdelivr.net/npm/mdui@1.0.1/dist/js/mdui.min.js"></script>
 <script>
-    $(document).pjax('a', '#pjax-container',{'timeout':false})
+    $(document).pjax('a', '#pjax-container', {
+        'timeout': false
+    })
     $("#isLoading").hide()
     var inst = new mdui.Drawer('#main-drawer');
     $(document).on('pjax:send', function() {
@@ -35,8 +37,8 @@
         return mobile_flag;
     }
 
-    function getNowURL(){
-        return window.location.protocol+'//'+window.location.host
+    function getNowURL() {
+        return window.location.protocol + '//' + window.location.host
     }
 
     $(function() {

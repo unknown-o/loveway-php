@@ -23,7 +23,7 @@ if (empty($QueryArr)) {
     $QueryArr = $_GET;
 }
 $templateMode = empty($QueryArr['_pjax']);
-$siteTitle=getInfo('title');
+$siteTitle = getInfo('title');
 switch ($pageName) {
     case "":
         include('./pages/homepage.php');
@@ -53,9 +53,8 @@ switch ($pageName) {
         }
         break;
     default:
-        $templateMode=false;
+        $templateMode = false;
         include('./pages/404.php');
-
 }
 echo titleChange();
 if ($templateMode) {

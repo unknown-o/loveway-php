@@ -17,7 +17,7 @@ if ($timestamp - time() > 5 || time() - $timestamp > 5) {
     exit('{"code":-5,"msg":"提交失败！请检查您的系统时间！"}');
 }
 
-$all = 'Kagamine Yes!'.strval($contact) . $confessor . $ta . $image .$introduction . $content . strval($timestamp);
+$all = 'Kagamine Yes!' . strval($contact) . $confessor . $ta . $image . $introduction . $content . strval($timestamp);
 if (md5($all) != $_POST['key']) {
     exit('{"code":-5,"msg":"出现了一个未知错误！请联系管理员！"}');
 }

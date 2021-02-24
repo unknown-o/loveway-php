@@ -1,5 +1,6 @@
 <?php
-function pdoConnect(){
+function pdoConnect()
+{
     return new PDO('mysql:host=' . $GLOBALS['DB_HOST'] . ';dbname=' . $GLOBALS['DB_NAME'], $GLOBALS['DB_USER'], $GLOBALS['DB_PASS']);
 }
 
@@ -9,34 +10,36 @@ function get_http_type()
     return $http_type;
 }
 
-function titleChange(){
-    $title='';
+function titleChange()
+{
+    $title = '';
     if (!empty(getInfo($_GET['page']))) $title = getInfo($_GET['page']) . ' - ';
     $title = $title . getInfo('title');
-    return '<script>$(document).attr("title","'.$title.'");</script>';
+    return '<script>$(document).attr("title","' . $title . '");</script>';
 }
 
-function listActive($pageName){
-    ?>
+function listActive($pageName)
+{
+?>
     <script>
-    pageArr = ['homePage', 'submitPage', 'morePage', 'aboutPage'];
-    for (let i = 0; i < pageArr.length; i++) {
-        if ($("#" + pageArr[i]).hasClass("mdui-list-item-active")) {
-            $("#" + pageArr[i]).removeClass("mdui-list-item-active");
+        pageArr = ['homePage', 'submitPage', 'morePage', 'aboutPage'];
+        for (let i = 0; i < pageArr.length; i++) {
+            if ($("#" + pageArr[i]).hasClass("mdui-list-item-active")) {
+                $("#" + pageArr[i]).removeClass("mdui-list-item-active");
+            }
         }
-    }
-    $("#<?php echo $pageName;?>Page").addClass("mdui-list-item-active");
+        $("#<?php echo $pageName; ?>Page").addClass("mdui-list-item-active");
     </script>
-    <?php
+<?php
 }
 
 function getInfo($name)
 {
-    try{
+    try {
         $pdo = pdoConnect();
         $stmt = $pdo->prepare("select * from loveway_config where name = ?");
-        $stmt->bindValue(1,$name);
-        if($stmt->execute()){
+        $stmt->bindValue(1, $name);
+        if ($stmt->execute()) {
             $rows = $stmt->fetchAll();
             return $rows[0]['value'];
         } else {
@@ -48,11 +51,16 @@ function getInfo($name)
     }
 }
 
-function hideSomethings(){
-    echo "<script>";
-    echo "$('#appbar').css('display','none');";
-    echo "$('#main-drawer').css('display','none');";
-    echo "setTimeout(function(){inst.close();},50);";
-    echo "</script>";
+function hideSomethings()
+{
+?>
+    <script>
+        $('#appbar').css('display', 'none');
+        $('#main-drawer').css('display', 'none');
+        setTimeout(function() {
+            inst.close();
+        }, 50);
+    </script>
+<?php
 }
 ?>

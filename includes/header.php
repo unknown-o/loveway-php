@@ -1,4 +1,4 @@
-<?php 
+<?php
 error_reporting(0);
 ?>
 <!DOCTYPE html>
@@ -7,11 +7,12 @@ error_reporting(0);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
-    <title><?php $subPageName=$_GET['page']; if (!empty(getInfo($subPageName))) echo getInfo($subPageName) . ' - ';
+    <title><?php $subPageName = $_GET['page'];
+            if (!empty(getInfo($subPageName))) echo getInfo($subPageName) . ' - ';
             echo $siteTitle ?></title>
     <meta name="keywords" content="<?php echo getInfo('keywords') ?>">
     <meta name="description" content="<?php echo getInfo('description') ?>">
-    <link rel="stylesheet" href="https://static.llilii.cn/css/other/background.css"/>
+    <link rel="stylesheet" href="https://static.llilii.cn/css/other/background.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@1.0.1/dist/css/mdui.min.css" />
     <script src="https://static.llilii.cn/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://static.llilii.cn/libs/pjax/jquery.pjax.js"></script>
@@ -36,7 +37,7 @@ error_reporting(0);
 <body class="mdui-drawer-body-left mdui-bottom-nav-fixed mdui-appbar-with-toolbar mdui-theme-primary-pink mdui-theme-accent-pink mdui-theme-layout-auto mdui-loaded">
     <header id="appbar" class="mdui-appbar mdui-appbar-fixed">
         <audio src="<?php echo getInfo('audio') ?>" loop autoplay>
-            您的浏览器不支持 audio 标签。
+            抱歉...您的浏览器暂不支持audio标签哦！
         </audio>
         <div class="mdui-progress" id="isLoading">
             <div class="mdui-progress-indeterminate"></div>
