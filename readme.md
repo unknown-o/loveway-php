@@ -4,6 +4,8 @@
 
 ## 这款表白墙献给镜音双子
 
+![](https://img.llilii.cn/kagamine/p2/78688114_p0.png)
+
 ### DEMO
 
 网页链接：https://love.unknown-o.com

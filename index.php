@@ -9,6 +9,7 @@
 // i@mr-wu.top
 include('./config.php');
 include('./includes/function.php');
+error_reporting(0);
 if ($REWRITE) {
     $pageName = explode("/", $_GET['uri'])[1];
     if ($pageName == "card") {
