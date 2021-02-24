@@ -1,7 +1,9 @@
 </div>
 <script src="https://cdn.jsdelivr.net/npm/mdui@1.0.1/dist/js/mdui.min.js"></script>
 <script>
-    $(document).pjax('a', '#pjax-container',{'timeout':false})
+    $(document).pjax('a', '#pjax-container', {
+        'timeout': false
+    })
     $("#isLoading").hide()
     var inst = new mdui.Drawer('#main-drawer');
     $(document).on('pjax:send', function() {
@@ -21,7 +23,6 @@
         var userAgentInfo = navigator.userAgent;
         var mobileAgents = ["Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod"];
         var mobile_flag = false;
-        //根据userAgent判断是否是手机
         for (var v = 0; v < mobileAgents.length; v++) {
             if (userAgentInfo.indexOf(mobileAgents[v]) > 0) {
                 mobile_flag = true;
@@ -30,15 +31,14 @@
         }
         var screen_width = window.screen.width;
         var screen_height = window.screen.height;
-        //根据屏幕分辨率判断是否是手机
         if (screen_width < 500 && screen_height < 800) {
             mobile_flag = true;
         }
         return mobile_flag;
     }
 
-    function getNowURL(){
-        return window.location.protocol+'//'+window.location.host
+    function getNowURL() {
+        return window.location.protocol + '//' + window.location.host
     }
 
     $(function() {
@@ -56,5 +56,4 @@
             });
         });
     });
-    //document.getElementById('').className += " mdui-list-item-active"
 </script>

@@ -5,7 +5,7 @@ include('../includes/function.php');
 switch ($_POST['mode']) {
     case "login":
         if ($_POST['username'] == $ADMIN_USER && $_POST['password'] == $ADMIN_PASS) {
-            setcookie("loveway_token", md5($ADMIN_USER . $ADMIN_PASS . 'KAGAMINE WORLD!' . date('Y-m-d', time())), time()+3600,'/');
+            setcookie("loveway_token", md5($ADMIN_USER . $ADMIN_PASS . 'KAGAMINE WORLD!' . date('Y-m-d', time())), time() + 3600, '/');
             exit('{"code":1,"msg":"success"}');
         } else {
             exit('{"code":-1,"msg":"username or password error"}');

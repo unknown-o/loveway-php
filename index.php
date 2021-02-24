@@ -9,6 +9,7 @@
 // i@mr-wu.top
 include('./config.php');
 include('./includes/function.php');
+error_reporting(0);
 if ($REWRITE) {
     $pageName = explode("/", $_GET['uri'])[1];
     if ($pageName == "card") {
@@ -22,26 +23,27 @@ if (empty($QueryArr)) {
     $QueryArr = $_GET;
 }
 $templateMode = empty($QueryArr['_pjax']);
-$siteTitle=getInfo('title');
-if ($templateMode) {
-    include('./includes/header.php');
-}
+$siteTitle = getInfo('title');
 switch ($pageName) {
     case "":
         include('./pages/homepage.php');
+        listActive('home');
         break;
     case "submit":
         include('./pages/submit.php');
+        listActive('submit');
         break;
     case "more":
         include('./pages/more.php');
+        listActive('more');
         break;
     case "about":
         include('./pages/about.php');
+        listActive('about');
         break;
     case "card":
-        hideSomethings();
         include('./pages/card.php');
+        hideSomethings();
         break;
     case "admin":
         if ($_COOKIE['loveway_token'] == md5($ADMIN_USER . $ADMIN_PASS . 'KAGAMINE WORLD!' . date('Y-m-d', time()))) {
@@ -51,9 +53,8 @@ switch ($pageName) {
         }
         break;
     default:
-        hideSomethings();
+        $templateMode = false;
         include('./pages/404.php');
-
 }
 echo titleChange();
 if ($templateMode) {
