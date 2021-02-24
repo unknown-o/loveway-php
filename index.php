@@ -27,15 +27,19 @@ $siteTitle=getInfo('title');
 switch ($pageName) {
     case "":
         include('./pages/homepage.php');
+        listActive('home');
         break;
     case "submit":
         include('./pages/submit.php');
+        listActive('submit');
         break;
     case "more":
         include('./pages/more.php');
+        listActive('more');
         break;
     case "about":
         include('./pages/about.php');
+        listActive('about');
         break;
     case "card":
         hideSomethings();

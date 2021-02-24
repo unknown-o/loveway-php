@@ -16,6 +16,20 @@ function titleChange(){
     return '<script>$(document).attr("title","'.$title.'");</script>';
 }
 
+function listActive($pageName){
+    ?>
+    <script>
+    pageArr = ['homePage', 'submitPage', 'morePage', 'aboutPage'];
+    for (let i = 0; i < pageArr.length; i++) {
+        if ($("#" + pageArr[i]).hasClass("mdui-list-item-active")) {
+            $("#" + pageArr[i]).removeClass("mdui-list-item-active");
+        }
+    }
+    $("#<?php echo $pageName;?>Page").addClass("mdui-list-item-active");
+    </script>
+    <?php
+}
+
 function getInfo($name)
 {
     try{
