@@ -53,8 +53,8 @@ switch ($pageName) {
         }
         break;
     default:
-        hideSomethings();
         include('./pages/404.php');
+        hideSomethings();
 
 }
 echo titleChange();
