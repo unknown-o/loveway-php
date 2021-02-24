@@ -1,3 +1,8 @@
+<?php
+if ($templateMode) {
+    include('./includes/header.php');
+}
+?>
 <br /><br />
 <div class="mdui-card mdui-hoverable" style="border-radius: 16px">
     <!-- 卡片头部，包含头像、标题、副标题 -->

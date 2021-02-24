@@ -51,22 +51,22 @@ error_reporting(0);
     <div class="mdui-drawer" id="main-drawer">
         <div class="mdui-list " mdui-collapse="{accordion: true}" style="margin-bottom: 76px;">
             <div class="mdui-list">
-                <a href="/" id="indexPage" class="mdui-list-item mdui-ripple ">
+                <a href="/" id="homePage" class="mdui-list-item mdui-ripple">
                     <i class="mdui-list-item-icon mdui-icon material-icons">home</i>
                     <div class="mdui-list-item-content">主页</div>
                 </a>
                 <a href="<?php if ($REWRITE) echo '/';
-                            else echo '/?page='; ?>submit" id="userPage" class="mdui-list-item mdui-ripple ">
+                            else echo '/?page='; ?>submit" id="submitPage" class="mdui-list-item mdui-ripple">
                     <i class="mdui-list-item-icon mdui-icon material-icons">favorite</i>
                     <div class="mdui-list-item-content"><?php echo getInfo('submit') ?></div>
                 </a>
                 <a href="<?php if ($REWRITE) echo '/';
-                            else echo '/?page='; ?>more" id="indexPage" class="mdui-list-item mdui-ripple ">
+                            else echo '/?page='; ?>more" id="morePage" class="mdui-list-item mdui-ripple">
                     <i class="mdui-list-item-icon mdui-icon material-icons">tag_faces</i>
                     <div class="mdui-list-item-content"><?php echo getInfo('more') ?></div>
                 </a>
                 <a href="<?php if ($REWRITE) echo '/';
-                            else echo '/?page='; ?>about" id="indexPage" class="mdui-list-item mdui-ripple ">
+                            else echo '/?page='; ?>about" id="aboutPage" class="mdui-list-item mdui-ripple">
                     <i class="mdui-list-item-icon mdui-icon material-icons">code</i>
                     <div class="mdui-list-item-content"><?php echo getInfo('about') ?></div>
                 </a>

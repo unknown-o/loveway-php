@@ -1,3 +1,9 @@
+<?php
+header('HTTP/1.1 500 Internal Server Error');
+if ($templateMode) {
+    include('./includes/header.php');
+}
+?>
 <!DOCTYPE html>
 <html lang="zh-CN">
 

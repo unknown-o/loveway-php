@@ -1,3 +1,8 @@
+<?php
+if ($templateMode) {
+    include('./includes/header.php');
+}
+?>
 <div class="mdui-container" style="max-width: 400px; ">
     <br><br>
     <div class="mdui-card">

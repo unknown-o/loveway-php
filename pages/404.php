@@ -1,5 +1,8 @@
 <?php
 header('HTTP/1.1 404 Not Found');
+if ($templateMode) {
+    include('./includes/header.php');
+}
 ?>
 <!DOCTYPE html>
 <html lang="zh-CN">

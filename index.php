@@ -24,9 +24,6 @@ if (empty($QueryArr)) {
 }
 $templateMode = empty($QueryArr['_pjax']);
 $siteTitle=getInfo('title');
-if ($templateMode) {
-    include('./includes/header.php');
-}
 switch ($pageName) {
     case "":
         include('./pages/homepage.php');
