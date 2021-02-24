@@ -1,8 +1,5 @@
 <?php
 header('HTTP/1.1 404 Not Found');
-if ($templateMode) {
-    include('./includes/header.php');
-}
 ?>
 <!DOCTYPE html>
 <html lang="zh-CN">
@@ -13,6 +10,9 @@ if ($templateMode) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="theme-color" content="#3f51b5">
     <meta name="mdui-main-color" content="#3f51b5">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@1.0.1/dist/css/mdui.min.css" />
+    <script src="https://static.llilii.cn/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mdui@1.0.1/dist/js/mdui.min.js"></script>
     <Title>页面走丢啦 - <?php echo getInfo('title') ?></Title>
     <style>
         .mdui-background-404 {

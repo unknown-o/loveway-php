@@ -1,8 +1,4 @@
-<?php
-if ($templateMode) {
-    include('./includes/header.php');
-}
-?>
+
     <script>
         function RandomNumBoth(Min, Max) {
             var Range = Max - Min;

@@ -42,8 +42,8 @@ switch ($pageName) {
         listActive('about');
         break;
     case "card":
-        hideSomethings();
         include('./pages/card.php');
+        hideSomethings();
         break;
     case "admin":
         if ($_COOKIE['loveway_token'] == md5($ADMIN_USER . $ADMIN_PASS . 'KAGAMINE WORLD!' . date('Y-m-d', time()))) {
@@ -53,8 +53,8 @@ switch ($pageName) {
         }
         break;
     default:
+        $templateMode=false;
         include('./pages/404.php');
-        hideSomethings();
 
 }
 echo titleChange();
