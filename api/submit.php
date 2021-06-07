@@ -1,5 +1,6 @@
 <?php
 header('content-type:application/json');
+session_start();
 include('../config.php');
 include('../includes/function.php');
 $confessor = htmlspecialchars($_POST['name']);
@@ -13,7 +14,11 @@ if (empty($confessor) || empty($contact) || empty($ta) || empty($introduction) |
     exit('{"code":-3,"msg":"表单未填写完整或存在错误！"}');
 }
 
-if ($timestamp - time() > 5 || time() - $timestamp > 5) {
+if ($_SESSION['vcode'] != md5($_POST['vCode'] . $VERIFICATION_KEY) && $IMAGE_VERIFICATION) {
+    exit('{"code":-2,"msg":"抱歉，人机验证失败","result":""}');
+}
+
+if ($timestamp - time() > 60 || time() - $timestamp > 60) {
     exit('{"code":-5,"msg":"提交失败！请检查您的系统时间！"}');
 }
 
