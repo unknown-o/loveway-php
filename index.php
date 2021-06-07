@@ -21,6 +21,7 @@ if ($REWRITE) {
 }
 if (empty($QueryArr)) {
     $QueryArr = $_GET;
+    $cardID = $QueryArr['id'];
 }
 $templateMode = empty($QueryArr['_pjax']);
 $siteTitle = getInfo('title');
@@ -43,7 +44,6 @@ switch ($pageName) {
         break;
     case "card":
         include('./pages/card.php');
-        hideSomethings();
         break;
     case "admin":
         if ($_COOKIE['loveway_token'] == md5($ADMIN_USER . $ADMIN_PASS . 'KAGAMINE WORLD!' . date('Y-m-d', time()))) {
