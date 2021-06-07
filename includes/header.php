@@ -12,13 +12,12 @@ error_reporting(0);
             echo $siteTitle ?></title>
     <meta name="keywords" content="<?php echo getInfo('keywords') ?>">
     <meta name="description" content="<?php echo getInfo('description') ?>">
-    <link rel="stylesheet" href="https://static.llilii.cn/css/other/background.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@1.0.1/dist/css/mdui.min.css" />
-    <script src="https://static.llilii.cn/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://static.llilii.cn/libs/pjax/jquery.pjax.js"></script>
-    <script src="https://static.llilii.cn/libs/md5/jquery.md5.js"></script>
     <script src="https://static.llilii.cn/libs/loveway/main.js"></script>
-    <script src="https://static.llilii.cn/libs/clipboard/clipboard.min.js"></script>
+    <script src="/static/jquery.min.js"></script>
+    <script src="/static/jquery.pjax.js"></script>
+    <script src="/static/jquery.md5.js"></script>
+    <script src="/static/clipboard.min.js"></script>
     <style>
         .copyright {
             box-sizing: border-box;
