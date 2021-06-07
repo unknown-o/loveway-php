@@ -1,5 +1,5 @@
 <?php
-//V1.2.8版本
+//V1.3.2版本
 
 //数据库地址
 $DB_HOST="127.0.0.1";
@@ -15,6 +15,10 @@ $ADMIN_USER="kagamine";
 $ADMIN_PASS="kagamine1234";
 //是否开启伪静态（请先配置伪静态规则后再开启，否则可能导致404）
 $REWRITE=false;
+//是否开启提交验证
+$IMAGE_VERIFICATION=true;
+//随便一个字符串
+$VERIFICATION_KEY="KAGAMINE YES!"
 /*
 伪静态规则
 当前只支持nginx，apache规则的话...实在不会写，热心的童鞋可以帮忙写一下啊（谢谢各位大佬了）

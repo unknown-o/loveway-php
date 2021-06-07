@@ -1,3 +1,9 @@
+<?php
+if ($templateMode) {
+    include('./includes/header.php');
+}
+?>
+<br /><br />
 <script>
     function RandomNumBoth(Min, Max) {
         var Range = Max - Min;
@@ -23,8 +29,6 @@
         xhr.open('get', 'https://static.llilii.cn/json/img_list.json');
         xhr.send(null);
     }
-
-    document.getElementById('pjax-container').style = 'max-width: 400px;';
 </script>
 
 <?php
@@ -52,6 +56,18 @@ try {
                 ?>
                     <div class="mdui-divider"></div>
                 <?php } ?>
+                <div class="mdui-card-menu">
+                    <a target="_blank" style="color:#4F4F4F" href="
+                    <?php
+                    if ($REWRITE) {
+                        echo "/";
+                    } else {
+                        echo '/';
+                    }
+                    ?>" class="mdui-btn mdui-btn-icon mdui-float-right">
+                        <i class="mdui-icon material-icons">arrow_back</i>
+                    </a>
+                </div>
             </div>
             <div class="mdui-card-primary">
                 <div class="mdui-card-primary-title">To <?php echo $row['to_who']; ?></div>
