@@ -19,7 +19,7 @@ if ($REWRITE) {
 } else {
     $pageName = $_GET['page'];
 }
-if (empty($QueryArr)) {
+if (empty($QueryArr)&&empty($_GET['uri'])) {
     $QueryArr = $_GET;
     $cardID = $QueryArr['id'];
 }
