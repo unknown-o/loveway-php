@@ -3,9 +3,17 @@ if ($templateMode) {
     include('./includes/header.php');
 }
 ?>
-<button id="submitbtn" style="color:#4F4F4F; border-radius: 8px" class="mdui-btn mdui-btn-icon mdui-float-right" onclick="logout()">
-    <i class="mdui-icon material-icons">exit_to_app</i>
-</button>
+<a target="_blank" style="color:#4F4F4F" href="
+                    <?php
+                    if ($REWRITE) {
+                        echo "/admin";
+                    } else {
+                        echo '/?page=admin';
+                    }
+                    ?>" class="mdui-btn mdui-btn-icon mdui-float-right">
+    <i class="mdui-icon material-icons">arrow_back</i>
+</a>
+
 <div class="mdui-typo">
     <h1 class="doc-chapter-title doc-chapter-title-first mdui-text-color-theme">表白管理</h1>
 </div>
@@ -20,7 +28,7 @@ if ($templateMode) {
             </tr>
         </thead>
         <tbody>
-        <?php
+            <?php
             $flag = true;
             try {
                 $pdo = pdoConnect();
@@ -51,8 +59,6 @@ if ($templateMode) {
 </div>
 
 <script>
-
-
     function setCookie(cname, cvalue, exdays) {
         var d = new Date();
         d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
