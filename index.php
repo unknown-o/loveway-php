@@ -19,7 +19,7 @@ if ($REWRITE) {
 } else {
     $pageName = $_GET['page'];
 }
-if (empty($QueryArr)&&empty($_GET['uri'])) {
+if (empty($QueryArr) && empty($_GET['uri'])) {
     $QueryArr = $_GET;
     $cardID = $QueryArr['id'];
 }
@@ -47,7 +47,17 @@ switch ($pageName) {
         break;
     case "admin":
         if ($_COOKIE['loveway_token'] == md5($ADMIN_USER . $ADMIN_PASS . 'KAGAMINE WORLD!' . date('Y-m-d', time()))) {
-            include('./pages/admin.php');
+            switch ($cardID) {
+                case '':
+                    include('./pages/admin/homepage.php');
+                    break;
+                case 'general':
+                    include('./pages/admin/general.php');
+                    break;
+                default:
+                    $templateMode = false;
+                    include('./pages/404.php');
+            }
         } else {
             include('./pages/login.php');
         }

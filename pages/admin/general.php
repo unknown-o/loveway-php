@@ -5,6 +5,20 @@ if ($templateMode) {
 ?>
 <br /><br />
 <div class="mdui-card mdui-hoverable" style="border-radius: 16px">
+    <div class="mdui-card-media">
+        <div class="mdui-card-menu">
+            <a target="_blank" style="color:#4F4F4F" href="
+                    <?php
+                    if ($REWRITE) {
+                        echo "/admin";
+                    } else {
+                        echo '/?page=admin';
+                    }
+                    ?>" class="mdui-btn mdui-btn-icon mdui-float-right">
+                <i class="mdui-icon material-icons">arrow_back</i>
+            </a>
+        </div>
+    </div>
     <div class="mdui-card-primary">
         <div class="mdui-card-primary-title">表白墙设置</div>
         <div class="mdui-card-primary-subtitle">此处可以设置您的表白墙！</div>
@@ -42,9 +56,6 @@ if ($templateMode) {
     </div>
 
     <div class="mdui-card-actions">
-        <button id="submitbtn" style="border-radius: 8px" class="mdui-btn mdui-color-theme-accent mdui-ripple" onclick="logout()">
-            退出登录
-        </button>
         <button id="submitbtn" style="border-radius: 8px" class="mdui-btn mdui-color-theme-accent mdui-ripple mdui-float-right" onclick="submit()">
             保存数据
         </button>
