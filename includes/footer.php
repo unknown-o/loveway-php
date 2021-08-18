@@ -4,19 +4,21 @@
     $(document).pjax('a', '#pjax-container', {
         'timeout': false
     })
-    $("#isLoading").hide()
+    $("#isLoading").hide(200)
     var inst = new mdui.Drawer('#main-drawer');
     $(document).on('pjax:send', function() {
         if (isMobile()) {
             inst.close();
         }
-        $("#isLoading").show()
+        $("#pjax-container").hide(200)
+        $("#isLoading").show(200)
 
     })
     $(document).on('pjax:complete', function() {
         setTimeout(function() {
-            $("#isLoading").hide()
+            $("#isLoading").hide(200)
         }, 2000);
+        $("#pjax-container").show(200)
     })
 
     function isMobile() {

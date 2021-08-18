@@ -24,6 +24,19 @@ switch ($_POST['mode']) {
         } else {
             exit('{"code":-2,"msg":"token error"}');
         }
+    case "delete":
+        if ($_COOKIE['loveway_token'] == md5($ADMIN_USER . $ADMIN_PASS . 'KAGAMINE WORLD!' . date('Y-m-d', time()))) {
+            $pdo = pdoConnect();
+            $stmt = $pdo->prepare("DELETE FROM `loveway_data` WHERE `id` = ? ");
+            $stmt->bindValue(1, $_POST['id']);
+            if ($stmt->execute()) {
+                exit('{"code":1,"msg":"删除成功！"}');
+            } else {
+                exit('{"code":-3,"msg":"unknown error"}');
+            }
+        } else {
+            exit('{"code":-2,"msg":"token error"}');
+        }
     default:
         exit('{"code":-5,"msg":"mode error"}');
 }

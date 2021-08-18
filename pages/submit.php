@@ -75,7 +75,6 @@ if ($templateMode) {
         }
 
         function request(vCode) {
-            $("#submitbtn").attr("disabled", true);
             var contact = $("#qq").val();
             var name = $("#name").val();
             var taName = $("#taName").val();
@@ -92,53 +91,24 @@ if ($templateMode) {
                 introduceTA +
                 toTA +
                 timestamp)
-            $.ajax({
-                type: 'post',
-                url: '/api/submit.php',
-                data: {
-                    key: key,
-                    timestamp: timestamp,
-                    contact: contact,
-                    name: name,
-                    taName: taName,
-                    image: image,
-                    introduceTA: introduceTA,
-                    toTA: toTA,
-                    vCode:vCode
-                },
-                dataType: 'text',
-                success: function(data) {
-                    console.log(data)
-                    data = JSON.parse(data);
-                    if (data.code == 1) {
-                        mdui.snackbar({
-                            message: '提交成功！',
-                            position: 'right-top'
-                        });
-                        $("#qq").val("");
-                        $("#name").val("");
-                        $("#taName").val("");
-                        $("#image").val("");
-                        $("#introduceTA").val("");
-                        $("#toTA").val("");
-                    } else {
-                        mdui.snackbar({
-                            message: data.msg,
-                            position: 'right-top'
-                        });
-                    }
-                    $("#submitbtn").attr("disabled", false);
-                },
-                error: function(data) {
-                    var errors = data.responseJSON;
-                    $.each(errors.errors, function(key, value) {
-                        mdui.snackbar({
-                            message: "出现了一个未知错误",
-                            position: 'right-top'
-                        });
-                    });
-                },
-            });
+            requestApi("submit", {
+                key: key,
+                timestamp: timestamp,
+                contact: contact,
+                name: name,
+                taName: taName,
+                image: image,
+                introduceTA: introduceTA,
+                toTA: toTA,
+                vCode: vCode
+            }, function(data) {
+                $("#qq").val("");
+                $("#name").val("");
+                $("#taName").val("");
+                $("#image").val("");
+                $("#introduceTA").val("");
+                $("#toTA").val("");
+            }, true, true, "#submitbtn")
         }
     </script>
 </div>

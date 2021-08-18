@@ -7,19 +7,18 @@
 // 按道理你在得到本软件时，应该已经得到一份GPL，如果你没找到，写信给自由软件基金会（FSF）：
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110‐1301, USA
 // i@mr-wu.top
+error_reporting(0);
 include('./config.php');
 include('./includes/function.php');
-error_reporting(0);
+$IMAGE_VERIFICATION = true;
 if ($REWRITE) {
     $pageName = explode("/", $_GET['uri'])[1];
-    if ($pageName == "card") {
-        $cardID = explode("/", $_GET['uri'])[2];
-    }
+    $cardID = explode("/", $_GET['uri'])[2];
     parse_str($_GET['args'], $QueryArr);
 } else {
     $pageName = $_GET['page'];
 }
-if (empty($QueryArr)&&empty($_GET['uri'])) {
+if (empty($QueryArr) && empty($_GET['uri'])) {
     $QueryArr = $_GET;
     $cardID = $QueryArr['id'];
 }
@@ -47,7 +46,20 @@ switch ($pageName) {
         break;
     case "admin":
         if ($_COOKIE['loveway_token'] == md5($ADMIN_USER . $ADMIN_PASS . 'KAGAMINE WORLD!' . date('Y-m-d', time()))) {
-            include('./pages/admin.php');
+            switch ($cardID) {
+                case '':
+                    include('./pages/admin/homepage.php');
+                    break;
+                case 'general':
+                    include('./pages/admin/general.php');
+                    break;
+                case 'confession':
+                    include('./pages/admin/confession.php');
+                    break;
+                default:
+                    $templateMode = false;
+                    include('./pages/404.php');
+            }
         } else {
             include('./pages/login.php');
         }
