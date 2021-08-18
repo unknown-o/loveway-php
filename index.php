@@ -10,12 +10,10 @@
 error_reporting(0);
 include('./config.php');
 include('./includes/function.php');
-$IMAGE_VERIFICATION=true;
+$IMAGE_VERIFICATION = true;
 if ($REWRITE) {
     $pageName = explode("/", $_GET['uri'])[1];
-    if ($pageName == "card") {
-        $cardID = explode("/", $_GET['uri'])[2];
-    }
+    $cardID = explode("/", $_GET['uri'])[2];
     parse_str($_GET['args'], $QueryArr);
 } else {
     $pageName = $_GET['page'];
