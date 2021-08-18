@@ -41,7 +41,7 @@ if ($templateMode) {
                             <td><?php echo $row['id'] ?></td>
                             <td><?php echo $row['favorite'] ?></td>
                             <td>
-                                <a id="delete-<?php echo $row['id'] ?>" mdui-tooltip="{content: '删除此表白'}" class="mdui-color-theme-accent mdui-btn mdui-btn-icon mdui-text-color-white" onclick="deleteF('letter','<?php echo $row['id'] ?>')"><i class="mdui-icon material-icons">delete</i></a>
+                                <a id="delete-<?php echo $row['id'] ?>" mdui-tooltip="{content: '删除此表白'}" class="mdui-color-theme-accent mdui-btn mdui-btn-icon mdui-text-color-white" onclick="deleteF('<?php echo $row['id'] ?>')"><i class="mdui-icon material-icons">delete</i></a>
                             </td>
                         </tr>
             <?php
@@ -59,6 +59,13 @@ if ($templateMode) {
 </div>
 
 <script>
+    function deleteF(id) {
+        requestApi("admin", {
+            mode: "delete",
+            id: id
+        }, false, true, true, "")
+    }
+
     function setCookie(cname, cvalue, exdays) {
         var d = new Date();
         d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
