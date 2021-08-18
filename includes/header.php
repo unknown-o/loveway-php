@@ -18,6 +18,7 @@ error_reporting(0);
     <script src="/static/jquery.pjax.js"></script>
     <script src="/static/jquery.md5.js"></script>
     <script src="/static/clipboard.min.js"></script>
+    <script src="/static/main.js"></script>
     <style>
         .copyright {
             box-sizing: border-box;

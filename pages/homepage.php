@@ -28,6 +28,10 @@ if ($templateMode) {
         xhr.open('get', 'https://static.llilii.cn/json/img_list.json');
         xhr.send(null);
     }
+
+    function like(lId){
+        requestApi("favorite", {lId:lId}, false, true, true, "")
+    }
 </script>
 <?php
 
@@ -69,7 +73,20 @@ try {
                     <?php echo $row['content']; ?>
                 </div>
                 <div class="mdui-card-actions">
-                    <a target="_blank" href="
+                    <a class="copy mdui-btn mdui-btn-icon mdui-float-right" style="color:#4F4F4F" href="javascript:void(0);" data-clipboard-text="
+                    <?php
+                    echo get_http_type() . $_SERVER['SERVER_NAME'];
+                    if ($REWRITE) {
+                        echo "/article/" . $row['id'];
+                    } else {
+                        echo '/?page=article&id=' . $row['id'];
+                    }
+                    ?>"><i class="mdui-icon material-icons">share</i></a>
+                    </a>
+                    <div id="comment-<?php echo $row['id'] ?>" class="mdui-float-right mdui-card-primary-subtitle">
+                        <?php echo count(json_decode($row['comment'])) ?>
+                    </div>
+                    <a target="_blank" style="color:#4F4F4F" href="
                     <?php
                     if ($REWRITE) {
                         echo "/card/" . $row['id'];
@@ -77,18 +94,14 @@ try {
                         echo '/?page=card&id=' . $row['id'];
                     }
                     ?>" class="mdui-btn mdui-btn-icon mdui-float-right">
-                        <i class="mdui-icon material-icons">more</i>
+                        <i class="mdui-icon material-icons">comment</i>
                     </a>
-                    <a class="copy mdui-btn mdui-btn-icon mdui-float-right" href="javascript:void(0);" data-clipboard-text="
-                    <?php
-                    echo get_http_type() . $_SERVER['SERVER_NAME'];
-                    if ($REWRITE) {
-                        echo "/card/" . $row['id'];
-                    } else {
-                        echo '/?page=card&id=' . $row['id'];
-                    }
-                    ?>"><i class="mdui-icon material-icons">share</i></a>
-                    </a>
+                    <div id="like-<?php echo $row['id'] ?>" class="mdui-float-right mdui-card-primary-subtitle">
+                        <?php echo $row['favorite'] ?>
+                    </div>
+                    <button style="color:#4F4F4F" class="mdui-btn mdui-btn-icon mdui-float-right" onclick="like('<?php echo $row['id'] ?>')">
+                        <i class="mdui-icon material-icons">favorite</i>
+                    </button>
                 </div>
             </div>
 
