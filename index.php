@@ -7,9 +7,10 @@
 // 按道理你在得到本软件时，应该已经得到一份GPL，如果你没找到，写信给自由软件基金会（FSF）：
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110‐1301, USA
 // i@mr-wu.top
+error_reporting(0);
 include('./config.php');
 include('./includes/function.php');
-error_reporting(0);
+$IMAGE_VERIFICATION=true;
 if ($REWRITE) {
     $pageName = explode("/", $_GET['uri'])[1];
     if ($pageName == "card") {

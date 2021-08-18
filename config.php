@@ -15,8 +15,6 @@ $ADMIN_USER="kagamine";
 $ADMIN_PASS="kagamine1234";
 //是否开启伪静态（请先配置伪静态规则后再开启，否则可能导致404）
 $REWRITE=false;
-//是否开启提交验证
-$IMAGE_VERIFICATION=true;
 //随便一个字符串
 $VERIFICATION_KEY="KAGAMINE YES!"
 /*
