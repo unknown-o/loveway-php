@@ -167,7 +167,7 @@ try {
                     text: '确认',
                     onClick: function(inst) {
                         requestApi("comment", {
-                            id: <?php echo $_GET['id'] ?>,
+                            id: <?php echo $cardID ?>,
                             nickname: $("#nickname").val(),
                             content: $("#content").val(),
                             vCode: $("#answer").val(),
