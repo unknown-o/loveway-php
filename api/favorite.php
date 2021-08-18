@@ -25,7 +25,7 @@ try {
         $stmt->bindValue(1, intval($row['favorite'])+1);
         $stmt->bindValue(2, $id);
         if ($stmt->execute()) {
-            exit('{"code":1,"favorite":"'.strval(intval($row['favorite'])+1).'","msg":"success"}');
+            exit('{"code":1,"favorite":"'.strval(intval($row['favorite'])+1).'","msg":"点赞成功！"}');
         } else {
             exit('{"code":-2,"msg":"抱歉，出现了一个未知错误！请与管理员联系！"}');
         }
