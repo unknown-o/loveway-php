@@ -54,6 +54,9 @@ switch ($pageName) {
                 case 'general':
                     include('./pages/admin/general.php');
                     break;
+                case 'confession':
+                    include('./pages/admin/confession.php');
+                    break;
                 default:
                     $templateMode = false;
                     include('./pages/404.php');
