@@ -27,31 +27,31 @@ if ($templateMode) {
     <div class="mdui-card-content">
         <div class="mdui-textfield">
             <label class="mdui-textfield-label">表白墙标题</label>
-            <textarea id="title" class="mdui-textfield-input" placeholder="<?php echo getInfo('title') ?>"></textarea>
+            <textarea id="title" class="mdui-textfield-input" placeholder="<?php echo getInfo('title') ?>"><?php echo getInfo('title') ?></textarea>
         </div>
         <div class="mdui-textfield">
             <label class="mdui-textfield-label">SEO关键词</label>
-            <textarea id="keywords" class="mdui-textfield-input" placeholder="<?php echo getInfo('keywords') ?>"></textarea>
+            <textarea id="keywords" class="mdui-textfield-input" placeholder="<?php echo getInfo('keywords') ?>"><?php echo getInfo('keywords') ?></textarea>
         </div>
         <div class="mdui-textfield">
             <label class="mdui-textfield-label">SEO简介</label>
-            <textarea id="description" class="mdui-textfield-input" placeholder="<?php echo getInfo('description') ?>"></textarea>
+            <textarea id="description" class="mdui-textfield-input" placeholder="<?php echo getInfo('description') ?>"><?php echo getInfo('description') ?></textarea>
         </div>
         <div class="mdui-textfield">
             <label class="mdui-textfield-label">网站音频</label>
-            <textarea id="audio" class="mdui-textfield-input" placeholder="<?php echo getInfo('audio') ?>"></textarea>
+            <textarea id="audio" class="mdui-textfield-input" placeholder="<?php echo getInfo('audio') ?>"><?php echo getInfo('audio') ?></textarea>
         </div>
         <div class="mdui-textfield">
             <label class="mdui-textfield-label">自定义页面标题（本站右侧应用栏的第三个列表）</label>
-            <textarea id="more" class="mdui-textfield-input" placeholder="<?php echo getInfo('more') ?>"></textarea>
+            <textarea id="more" class="mdui-textfield-input" placeholder="<?php echo getInfo('more') ?>"><?php echo getInfo('more') ?></textarea>
         </div>
         <div class="mdui-textfield">
             <label class="mdui-textfield-label">自定义页面（请使用html格式、本站右侧应用栏的第三个列表）</label>
-            <textarea id="more_content" class="mdui-textfield-input" rows="4" placeholder="<?php echo getInfo('more_content') ?>"></textarea>
+            <textarea id="more_content" class="mdui-textfield-input" rows="4" placeholder="<?php echo getInfo('more_content') ?>"><?php echo getInfo('more_content') ?></textarea>
         </div>
         <div class="mdui-textfield">
             <label class="mdui-textfield-label">关于本站页面（请使用html格式）</label>
-            <textarea id="about_content" class="mdui-textfield-input" rows="4" placeholder="<?php echo getInfo('about_content') ?>"></textarea>
+            <textarea id="about_content" class="mdui-textfield-input" rows="4" placeholder="<?php echo getInfo('about_content') ?>"><?php echo getInfo('about_content') ?></textarea>
         </div>
     </div>
 
@@ -85,7 +85,7 @@ if ($templateMode) {
         function submit() {
             configArr = ['title', 'keywords', 'description', 'audio', 'more', 'more_content', 'about_content'];
             for (let i = 0; i < configArr.length; i++) {
-                if ($("#" + configArr[i]).val() != "") {
+                if ($("#" + configArr[i]).val() != $("#" + configArr[i]).attr('placeholder')) {
                     value = $("#" + configArr[i]).val();
                     request(configArr[i], value);
                 }
