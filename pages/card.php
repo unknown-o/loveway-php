@@ -77,6 +77,52 @@ try {
             </div>
             <div class="mdui-card-content">
                 <?php echo $row['content']; ?>
+                <br><br>
+                <div class="mdui-card" style="border-radius: 16px;">
+                    <div class="mdui-card-primary">
+                        <div class="mdui-card-primary-title">发表您的评论</div>
+                        <div class="mdui-card-primary-subtitle">可以发表您的感想以及感受哦！</div>
+                    </div>
+                    <div class="mdui-card-content">
+                        <div class="mdui-textfield">
+                            <label class="mdui-textfield-label">您的昵称</label>
+                            <input placeholder="镜音连" id="nickname" class="mdui-textfield-input" type="text" />
+                        </div>
+                        <div class="mdui-textfield">
+                            <label class="mdui-textfield-label">你要说....</label>
+                            <textarea id="content" class="mdui-textfield-input" rows="4" placeholder="加油！你一定能成功的！"></textarea>
+                        </div>
+                    </div>
+                    <div class="mdui-card-actions">
+                        <button id="submitbtn" style="border-radius: 8px" class="mdui-btn mdui-color-theme-accent mdui-ripple mdui-float-right" onclick="commentSubmit()">
+                            发射！
+                        </button>
+                    </div>
+                </div>
+                <br>
+                <div class="mdui-card" id="commentBoxMain" style="border-radius: 16px;">
+                    <div class="mdui-card-primary">
+                        <div class="mdui-card-primary-title">所有评论</div>
+                        <div class="mdui-card-primary-subtitle">这些都是给信的主人的评论啦！</div>
+                    </div>
+                    <div id="commentBox" class="mdui-card-content">
+                        <?php
+                        $commentArr = json_decode($row['comment'], true);
+                        $commentNum = count($commentArr);
+                        if ($commentNum == 0) {
+                            echo "<script>$('#commentBoxMain').hide();</script>";
+                        }
+                        for ($i = 0; $i < $commentNum; $i++) {
+                            echo '<div class="mdui-card-primary-subtitle">' . $commentArr[$i]['nickname'] . '在 ' . date("Y-m-d H:i:s", intval($commentArr[$i]['time'])) . ' 的评论</div><br>';
+                            echo nl2br($commentArr[$i]['content']);
+                            if ($i != $commentNum - 1) {
+                                echo '<br><br><div class="mdui-divider"></div><br>';
+                            }
+                        }
+                        ?>
+                        <br><br>
+                    </div>
+                </div>
             </div>
             <div class="mdui-card-actions">
                 <a class="copy mdui-btn mdui-btn-icon mdui-float-right" href="javascript:void(0);" data-clipboard-text="
@@ -102,10 +148,31 @@ try {
 }
 ?>
 
-<div id="background">
-    <div class="bg-image" style="background: url('//img.llilii.cn/kagamine/p3/32639516_p2.jpg') no-repeat center center; display: block;"></div>
-</div>
 <script>
+    function commentSubmit() {
+        mdui.dialog({
+            title: '请输入图片中的验证码',
+            content: '<center><div class="mdui-row"> <div class="mdui-col-xs-9"> <div class="mdui-textfield"> <input class="mdui-textfield-input" id="answer" type="text" placeholder="请输入您的答案" /></div> </div> <div class="mdui-col-xs-3"> <img style="position: relative;top:15px" id="vcode" src="/api/vcode.php" /> </div> </div></center>',
+            modal: true,
+            buttons: [{
+                    text: '取消'
+                },
+                {
+                    text: '确认',
+                    onClick: function(inst) {
+                        requestApi("comment", {
+                            id: <?php echo $_GET['id']?>,
+                            nickname: $("#nickname").val(),
+                            content: $("#content").val(),
+                            vCode: $("#answer").val(),
+                            timestamp: this.timestamp = Date.parse(new Date()) / 1000
+                        }, false, true, true, "#submitbtn")
+                    }
+                }
+            ]
+        });
+    }
+
     $(function() {
         var clipboard = new ClipboardJS('.copy');
         clipboard.on('success', function(e) {
