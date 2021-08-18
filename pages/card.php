@@ -136,6 +136,12 @@ try {
                             ?>
                             "><i class="mdui-icon material-icons">share</i></a>
                 </a>
+                <div id="like-<?php echo $row['id'] ?>" class="mdui-float-right mdui-card-primary-subtitle">
+                    <?php echo $row['favorite'] ?>
+                </div>
+                <button style="color:#4F4F4F" class="mdui-btn mdui-btn-icon mdui-float-right" onclick="like('<?php echo $row['id'] ?>')">
+                    <i class="mdui-icon material-icons">favorite</i>
+                </button>
             </div>
         </div>
 
@@ -161,7 +167,7 @@ try {
                     text: '确认',
                     onClick: function(inst) {
                         requestApi("comment", {
-                            id: <?php echo $_GET['id']?>,
+                            id: <?php echo $_GET['id'] ?>,
                             nickname: $("#nickname").val(),
                             content: $("#content").val(),
                             vCode: $("#answer").val(),
@@ -171,6 +177,29 @@ try {
                 }
             ]
         });
+    }
+
+    function like(id) {
+        mdui.dialog({
+            title: '请输入图片中的验证码',
+            content: '<center><div class="mdui-row"> <div class="mdui-col-xs-9"> <div class="mdui-textfield"> <input class="mdui-textfield-input" id="vCode" type="text" placeholder="请输入您的答案" /></div> </div> <div class="mdui-col-xs-3"> <img style="position: relative;top:15px" id="vcode" src="/api/vcode.php" /> </div> </div></center>',
+            modal: true,
+            buttons: [{
+                    text: '取消'
+                },
+                {
+                    text: '确认',
+                    onClick: function(inst) {
+                        requestApi("favorite", {
+                            id: id,
+                            vCode: $("#vCode").val(),
+                            timestamp: this.timestamp = Date.parse(new Date()) / 1000
+                        }, false, true, true, "")
+                    }
+                }
+            ]
+        });
+
     }
 
     $(function() {

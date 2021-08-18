@@ -49,7 +49,6 @@ if ($templateMode) {
                 }
             ]
         });
-
     }
 </script>
 <?php
