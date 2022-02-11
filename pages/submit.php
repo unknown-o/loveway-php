@@ -33,7 +33,7 @@ if ($templateMode) {
                         <textarea id="image" class="mdui-textfield-input" placeholder="https://kagamine.top/img.png"></textarea>
                     </div>
                     <div class="mdui-col-md-2 mdui-col-sm-2 mdui-col-xs-5">
-                        <a href="javascript:;" id="upload" class="mdui-color-theme-accent a-upload mr10"><input type="file" name="" id="">上传文件</a>
+                        <a href="javascript:;" id="upload" class="mdui-color-theme-accent a-upload mr10"><input type="file" name="" id="upload-image">选择文件</a>
                     </div>
                 </div>
             <?php
@@ -72,6 +72,38 @@ if ($templateMode) {
             }
         }
 
+        $("#upload").on("change", "input[type='file']", function() {
+            var data = new FormData();
+            data.append('file', $(this).prop('files')[0]);
+            $('#upload-image').attr("disabled", "disabled")
+            $("#isLoading").show(100)
+            $.ajax({
+                type: 'POST',
+                url: "<?php echo $UPLOAD_API ?>",
+                data: data,
+                cache: false,
+                processData: false,
+                contentType: false,
+                success: function(rdata) {
+                    $("#isLoading").hide(100)
+                    $("#image").val(rdata.path)
+                    $('#upload-image').removeAttr("disabled")
+                    mdui.snackbar({
+                        message: rdata.msg,
+                        position: 'right-top',
+                    })
+                },
+                error: function(data) {
+                    $("#image").val("")
+                    $('#upload-image').removeAttr("disabled")
+                    $(disableBtnId).attr("disabled", false)
+                    mdui.snackbar({
+                        message: "请求接口[upload]时，出现了一个致命错误！",
+                        position: 'right-top'
+                    })
+                }
+            })
+        });
 
         function imageVerification(callback) {
             mdui.dialog({

@@ -31,4 +31,6 @@ if ($filename) {
     } else {
         exit('{"code":-5, "msg":"上传失败！未知错误！", "path":""}');
     }
+} else {
+    exit('{"code":-6, "msg":"上传失败！没有文件！", "path":""}');
 }
