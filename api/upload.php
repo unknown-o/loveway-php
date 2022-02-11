@@ -9,7 +9,7 @@ if ($_SESSION['vcode'] != md5($_POST['vcode'] . $VERIFICATION_KEY) && $IMAGE_VER
     exit('{"code":-1,"msg":"抱歉，人机验证失败","result":""}');
 }
 if ($timestamp - time() > 60 || time() - $timestamp > 60) {
-    exit('{"code":-2,"msg":"提交失败！请检查您的系统时间！"}');
+    exit('{"code":-2,"msg":"上传失败！请检查您的系统时间！"}');
 }
 
 if (!$UPLOAD_IMAGE) {

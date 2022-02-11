@@ -14,9 +14,9 @@ switch ($_POST['mode']) {
         }
         if ($_POST['username'] == $ADMIN_USER && $_POST['password'] == $ADMIN_PASS) {
             setcookie("loveway_token", md5($ADMIN_USER . $ADMIN_PASS . 'KAGAMINE WORLD!' . date('Y-m-d', time())), time() + 3600, '/');
-            exit('{"code":1,"msg":"success"}');
+            exit('{"code":1,"msg":"登录成功！"}');
         } else {
-            exit('{"code":-1,"msg":"username or password error"}');
+            exit('{"code":-1,"msg":"登录失败！用户名或密码错误！"}');
         }
     case "updateConfig":
         if ($_COOKIE['loveway_token'] == md5($ADMIN_USER . $ADMIN_PASS . 'KAGAMINE WORLD!' . date('Y-m-d', time()))) {
@@ -25,12 +25,12 @@ switch ($_POST['mode']) {
             $stmt->bindValue(1, $_POST['value']);
             $stmt->bindValue(2, $_POST['name']);
             if ($stmt->execute()) {
-                exit('{"code":1,"msg":"success"}');
+                exit('{"code":1,"msg":"操作成功！"}');
             } else {
-                exit('{"code":-3,"msg":"unknown error"}');
+                exit('{"code":-3,"msg":"操作失败！[UPDATE DATABASE]失败！"}');
             }
         } else {
-            exit('{"code":-2,"msg":"token error"}');
+            exit('{"code":-2,"msg":"校验登录token失败！"}');
         }
     case "delete":
         if ($_COOKIE['loveway_token'] == md5($ADMIN_USER . $ADMIN_PASS . 'KAGAMINE WORLD!' . date('Y-m-d', time()))) {
@@ -40,11 +40,11 @@ switch ($_POST['mode']) {
             if ($stmt->execute()) {
                 exit('{"code":1,"msg":"删除成功！"}');
             } else {
-                exit('{"code":-3,"msg":"unknown error"}');
+                exit('{"code":-3,"msg":"操作失败！[DELETE DATABASE]失败！"}');
             }
         } else {
-            exit('{"code":-2,"msg":"token error"}');
+            exit('{"code":-2,"msg":"校验登录token失败！"}');
         }
     default:
-        exit('{"code":-5,"msg":"mode error"}');
+        exit('{"code":-5,"msg":"缺失参数！"}');
 }
