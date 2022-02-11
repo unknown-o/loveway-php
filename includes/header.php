@@ -16,11 +16,11 @@ error_reporting(0);
     <link rel="stylesheet" href="/static/css/main.css" />
     <script src="https://static.llilii.cn/libs/loveway/main.js"></script>
     <script src="/static/mdui/js/mdui.min.js"></script>
-    <script src="/static/jquery.min.js"></script>
-    <script src="/static/jquery.pjax.js"></script>
-    <script src="/static/jquery.md5.js"></script>
-    <script src="/static/clipboard.min.js"></script>
-    <script src="/static/main.js"></script>
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/jquery.pjax.js"></script>
+    <script src="/static/js/jquery.md5.js"></script>
+    <script src="/static/js/clipboard.min.js"></script>
+    <script src="/static/js/main.js"></script>
 </head>
 
 <body class="mdui-drawer-body-left mdui-bottom-nav-fixed mdui-appbar-with-toolbar mdui-theme-primary-pink mdui-theme-accent-pink mdui-theme-layout-auto mdui-loaded">
