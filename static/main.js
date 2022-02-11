@@ -1,6 +1,6 @@
 function requestApi(functionName, args, callback, showResults, refreshPageWhenSuccess, disableBtnId) {
     $(disableBtnId).attr("disabled", true);
-    setTimeout(function() {
+    setTimeout(function () {
         $(disableBtnId).attr("disabled", false);
     }, 200000)
     $("#isLoading").show(100)
@@ -9,7 +9,7 @@ function requestApi(functionName, args, callback, showResults, refreshPageWhenSu
         url: '/api/' + functionName + '.php',
         data: args,
         dataType: 'json',
-        success: function(rdata) {
+        success: function (rdata) {
             if (showResults) {
                 mdui.snackbar({
                     message: rdata.msg,
@@ -27,7 +27,7 @@ function requestApi(functionName, args, callback, showResults, refreshPageWhenSu
                 callback(rdata)
             }
         },
-        error: function(data) {
+        error: function (data) {
             $("#isLoading").hide(100)
             $(disableBtnId).attr("disabled", false)
             mdui.snackbar({
@@ -36,6 +36,19 @@ function requestApi(functionName, args, callback, showResults, refreshPageWhenSu
             })
         },
     })
+}
+
+function search() {
+    mdui.prompt('支持从名字、表白内容中搜索', '搜索',
+        function (value) {
+            setTimeout(function () {
+                $.pjax({
+                    url: '/?search=' + value,
+                    container: '#pjax-container'
+                });
+            }, 10)
+        }
+    )
 }
 
 function jumpPage() {

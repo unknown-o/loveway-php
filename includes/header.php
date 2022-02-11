@@ -47,7 +47,8 @@ error_reporting(0);
             <span class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white " onclick="inst.toggle();"><i class="mdui-icon material-icons">menu</i></span>
             <a href="../" class="mdui-typo-headline mdui-hidden-xs"><?php echo $siteTitle; ?></a>
             <div class="mdui-toolbar-spacer"></div>
-            <button id="logout" onclick='window.open("https://www.wunote.cn")' mdui-tooltip="{content: '吴先森的笔记'}" class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white"><i class="mdui-icon material-icons">code</i></button>
+            <button onclick="search()" mdui-tooltip="{content: '搜索'}" class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white"><i class="mdui-icon material-icons">search</i></button>
+            <a target="_BLANK" href="https://www.wunote.cn" mdui-tooltip="{content: '吴先森的笔记'}" class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white"><i class="mdui-icon material-icons">code</i></a>
         </div>
     </header>
     <div class="mdui-drawer" id="main-drawer">
