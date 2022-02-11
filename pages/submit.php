@@ -111,24 +111,6 @@ if ($templateMode) {
             })
         });
 
-        function imageVerification(callback) {
-            mdui.dialog({
-                title: '请输入图片中的验证码',
-                content: '<center><div class="mdui-row"> <div class="mdui-col-xs-9"> <div class="mdui-textfield"> <input class="mdui-textfield-input" id="answer" type="text" placeholder="请输入您的答案" /></div> </div> <div class="mdui-col-xs-3"> <img style="position: relative;top:15px" id="vcode" src="/api/vcode.php" /> </div> </div></center>',
-                modal: true,
-                buttons: [{
-                        text: '取消'
-                    },
-                    {
-                        text: '确认',
-                        onClick: function(inst) {
-                            callback($('#answer').val());
-                        }
-                    }
-                ]
-            });
-        }
-
         function request(vCode) {
             var contact = $("#qq").val();
             var name = $("#name").val();
