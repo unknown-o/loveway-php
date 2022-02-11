@@ -7,7 +7,7 @@ if ($templateMode) {
     <i class="mdui-icon material-icons">exit_to_app</i>
 </button>
 <div class="mdui-typo">
-    <h1 class="doc-chapter-title doc-chapter-title-first mdui-text-color-theme">管理员</h1>
+    <h1 class="doc-chapter-title doc-chapter-title-first mdui-text-color-theme">管理页面</h1>
 </div>
 <br /><br />
 <div class="mdui-table-fluid" style="border-radius: 16px">
@@ -30,7 +30,7 @@ if ($templateMode) {
                 <td>表白管理</td>
                 <td>可以删除本站表白信息</td>
                 <td><a class="mdui-btn mdui-color-theme-accent mdui-ripple" style="border-radius: 8px" href="<?php if ($REWRITE) echo "/admin/confession";
-                                                                                                                else echo "/?page=admin&id=confession"; ?>">去设置</a></td>
+                                                                                                                else echo "/?page=admin&id=confession"; ?>">去管理</a></td>
             </tr>
         </tbody>
     </table>
