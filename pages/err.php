@@ -11,7 +11,7 @@ header('HTTP/1.1 500 Internal Server Error');
     <meta name="theme-color" content="#3f51b5">
     <meta name="mdui-main-color" content="#3f51b5">
     <link rel="stylesheet" href="/static/mdui/css/mdui.min.css" />
-    <script src="/static/jquery.min.js"></script>
+    <script src="/static/js/jquery.min.js"></script>
     <script src="/static/mdui/js/mdui.min.js"></script>
     <Title>出错啦</Title>
     <style>

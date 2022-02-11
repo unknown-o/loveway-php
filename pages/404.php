@@ -11,7 +11,7 @@ header('HTTP/1.1 404 Not Found');
     <meta name="theme-color" content="#3f51b5">
     <meta name="mdui-main-color" content="#3f51b5">
     <link rel="stylesheet" href="/static/mdui/css/mdui.min.css" />
-    <script src="/static/jquery.min.js"></script>
+    <script src="/static/js/jquery.min.js"></script>
     <script src="/static/mdui/js/mdui.min.js"></script>
     <Title>页面走丢啦 - <?php echo getInfo('title') ?></Title>
     <style>
