@@ -24,6 +24,9 @@ if ($templateMode) {
             <tr>
                 <th>表白标识符</th>
                 <th>被点赞的次数</th>
+                <th>表白人</th>
+                <th>表白给</th>
+                <th>时间</th>
                 <th>可用操作</th>
             </tr>
         </thead>
@@ -40,6 +43,9 @@ if ($templateMode) {
                         <tr id="id-<?php echo $row['id'] ?>">
                             <td><?php echo $row['id'] ?></td>
                             <td><?php echo $row['favorite'] ?></td>
+                            <td><?php echo $row['confessor'] ?></td>
+                            <td><?php echo $row['to_who'] ?></td>
+                            <td><?php echo $row['time'] ?></td>
                             <td>
                                 <a id="delete-<?php echo $row['id'] ?>" mdui-tooltip="{content: '删除此表白'}" class="mdui-color-theme-accent mdui-btn mdui-btn-icon mdui-text-color-white" onclick="deleteF('<?php echo $row['id'] ?>')"><i class="mdui-icon material-icons">delete</i></a>
                             </td>
