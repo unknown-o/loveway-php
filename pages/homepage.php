@@ -113,9 +113,9 @@ try {
                     <?php
                     echo get_http_type() . $_SERVER['SERVER_NAME'];
                     if ($REWRITE) {
-                        echo "/article/" . $row['id'];
+                        echo "/card/" . $row['id'];
                     } else {
-                        echo '/?page=article&id=' . $row['id'];
+                        echo '/?page=card&id=' . $row['id'];
                     }
                     ?>"><i class="mdui-icon material-icons">share</i></a>
                     </a>
