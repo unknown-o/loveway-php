@@ -67,9 +67,14 @@ try {
     $q = $pdo->query("SELECT count(*) from loveway_data");
     $rows = $q->fetch();
     $rowCount = $rows[0];
-    $stmt = $pdo->prepare("select * from loveway_data ORDER BY time DESC limit ?,?");
-    $stmt->bindValue(1, $nowPage * $PAGEMAX, PDO::PARAM_INT);
-    $stmt->bindValue(2, $PAGEMAX, PDO::PARAM_INT);
+    $stmt = $pdo->prepare("select * from loveway_data WHERE `confessor` like ? or `to_who` like ? or `introduction` like ? or `content` like ? or comment like ? ORDER BY time DESC limit ?,?");
+    $stmt->bindValue(1, $searchString);
+    $stmt->bindValue(2, $searchString);
+    $stmt->bindValue(3, $searchString);
+    $stmt->bindValue(4, $searchString);
+    $stmt->bindValue(5, $searchString);
+    $stmt->bindValue(6, $nowPage * $PAGEMAX, PDO::PARAM_INT);
+    $stmt->bindValue(7, $PAGEMAX, PDO::PARAM_INT);
     if ($stmt->execute()) {
         while ($row = $stmt->fetch()) {
             $flag = false;
