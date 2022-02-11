@@ -144,10 +144,10 @@ try {
 <?php
         }
     } else {
-        return 'database connection failed';
+        echo '抱歉！操作数据库时出现了一个致命错误！';
     }
 } catch (Exception $e) {
-    return 'database connection failed';
+    echo '抱歉！连接数据库失败！';
     //echo $e->getMessage();
 }
 ?>
