@@ -17,6 +17,8 @@ $ADMIN_PASS="kagamine1234";
 $REWRITE=false;
 //随便一个字符串
 $VERIFICATION_KEY="KAGAMINE YES!";
+//是否允许上传文件（可能存在安全风险！
+$UPLOAD_IMAGE=true;
 //单页允许加载的最多表白数
 $PAGEMAX=10;
 /*

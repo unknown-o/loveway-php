@@ -16,7 +16,7 @@ a {
     position: relative;
     cursor: pointer;
     color: #fff;
-    border-radius: 8px;
+    border-radius: 4px;
     overflow: hidden;
     display: inline-block;
     *display: inline;

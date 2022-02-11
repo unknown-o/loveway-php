@@ -25,7 +25,24 @@ if ($templateMode) {
         </div>
         <div class="mdui-textfield">
             <label class="mdui-textfield-label">表白配图（可选）</label>
-            <textarea id="image" class="mdui-textfield-input" placeholder="https://kagamine.top/img.png"></textarea>
+            <?php
+            if ($UPLOAD_IMAGE) {
+            ?>
+                <div class="mdui-row">
+                    <div class="mdui-col-md-10 mdui-col-sm-10 mdui-col-xs-7">
+                        <textarea id="image" class="mdui-textfield-input" placeholder="https://kagamine.top/img.png"></textarea>
+                    </div>
+                    <div class="mdui-col-md-2 mdui-col-sm-2 mdui-col-xs-5">
+                        <a href="javascript:;" id="upload" class="mdui-color-theme-accent a-upload mr10"><input type="file" name="" id="">上传文件</a>
+                    </div>
+                </div>
+            <?php
+            } else {
+            ?>
+                <textarea id="image" class="mdui-textfield-input" placeholder="https://kagamine.top/img.png"></textarea>
+            <?php
+            }
+            ?>
         </div>
         <div class="mdui-textfield">
             <label class="mdui-textfield-label">一句话介绍一下TA</label>
