@@ -55,12 +55,12 @@ if ($templateMode) {
                 data = JSON.parse(data);
                 if (data.code == 1) {
                     mdui.snackbar({
-                        message: '登录成功！页面即将刷新！',
+                        message: '登录成功！',
                         position: 'right-top'
                     });
-                    setTimeout(function() {
-                        location.reload()
-                    }, 1500);
+                    $.pjax.reload({
+                        container: "#pjax-container"
+                    })
                 } else {
                     mdui.snackbar({
                         message: data.msg,
