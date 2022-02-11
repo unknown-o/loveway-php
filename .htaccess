@@ -2,5 +2,5 @@
     RewriteEngine on
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteRule (.*) ?uri=/$1
+    RewriteRule ^(.*) ?uri=/$1&args=%{QUERY_STRING}
 </IfModule>
