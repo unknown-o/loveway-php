@@ -33,7 +33,7 @@ if ($templateMode) {
                         <textarea id="image" class="mdui-textfield-input" placeholder="https://kagamine.top/img.png"></textarea>
                     </div>
                     <div class="mdui-col-md-2 mdui-col-sm-2 mdui-col-xs-5">
-                        <a href="javascript:;" id="upload" class="mdui-color-theme-accent a-upload mr10"><input type="file" name="" id="upload-image">选择文件</a>
+                        <a href="javascript:;" id="upload" class="mdui-color-theme-accent a-upload mr10"><input type="file" name="" id="upload-image">选择图片</a>
                     </div>
                 </div>
             <?php
