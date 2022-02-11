@@ -39,6 +39,14 @@ try {
     if ($stmt->execute()) {
         $rows = $stmt->fetchAll();
         $row = $rows[0];
+        if (empty($row)) {
+            if ($REWRITE) {
+                $pageNotFound = "/404";
+            } else {
+                $pageNotFound = "/?page=404";
+            }
+            exit("<script> setTimeout(function () { $.pjax({ url: '" . $pageNotFound . "', container: '#pjax-container' }); }, 10) </script>");
+        }
 ?>
         <div class="mdui-card mdui-hoverable" style="border-radius: 16px;">
             <div class="mdui-card-header">
