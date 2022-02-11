@@ -4,32 +4,6 @@ if ($templateMode) {
 }
 ?>
 <br /><br />
-<script>
-    function RandomNumBoth(Min, Max) {
-        var Range = Max - Min;
-        var Rand = Math.random();
-        var num = Min + Math.round(Rand * Range);
-        return num;
-    }
-
-    function randomImage() {
-        var img = event.srcElement;
-        img.onerror = null;
-        var xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function() {
-            switch (xhr.readyState) {
-                case 4:
-                    if ((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304) {
-                        imgURL = 'https://img.llilii.cn/kagamine/' + JSON.parse(xhr.responseText)['file_name'][RandomNumBoth(0, JSON.parse(xhr.responseText)['file_num'])];
-                        img.src = imgURL;
-                    }
-                    break;
-            }
-        }
-        xhr.open('get', 'https://static.llilii.cn/json/img_list.json');
-        xhr.send(null);
-    }
-</script>
 
 <?php
 try {
@@ -39,6 +13,14 @@ try {
     if ($stmt->execute()) {
         $rows = $stmt->fetchAll();
         $row = $rows[0];
+        if (empty($row)) {
+            if ($REWRITE) {
+                $pageNotFound = "/404";
+            } else {
+                $pageNotFound = "/?page=404";
+            }
+            exit("<script> setTimeout(function () { $.pjax({ url: '" . $pageNotFound . "', container: '#pjax-container' }); }, 10) </script>");
+        }
 ?>
         <div class="mdui-card mdui-hoverable" style="border-radius: 16px;">
             <div class="mdui-card-header">

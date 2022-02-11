@@ -12,26 +12,15 @@ error_reporting(0);
             echo $siteTitle ?></title>
     <meta name="keywords" content="<?php echo getInfo('keywords') ?>">
     <meta name="description" content="<?php echo getInfo('description') ?>">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@1.0.1/dist/css/mdui.min.css" />
+    <link rel="stylesheet" href="/static/mdui/css/mdui.min.css" />
+    <link rel="stylesheet" href="/static/css/main.css" />
     <script src="https://static.llilii.cn/libs/loveway/main.js"></script>
+    <script src="/static/mdui/js/mdui.min.js"></script>
     <script src="/static/jquery.min.js"></script>
     <script src="/static/jquery.pjax.js"></script>
     <script src="/static/jquery.md5.js"></script>
     <script src="/static/clipboard.min.js"></script>
     <script src="/static/main.js"></script>
-    <style>
-        .copyright {
-            box-sizing: border-box;
-            width: 100%;
-            padding: 10px 16px;
-            position: absolute;
-            bottom: 0;
-        }
-
-        a {
-            text-decoration: none
-        }
-    </style>
 </head>
 
 <body class="mdui-drawer-body-left mdui-bottom-nav-fixed mdui-appbar-with-toolbar mdui-theme-primary-pink mdui-theme-accent-pink mdui-theme-layout-auto mdui-loaded">
@@ -46,7 +35,8 @@ error_reporting(0);
             <span class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white " onclick="inst.toggle();"><i class="mdui-icon material-icons">menu</i></span>
             <a href="../" class="mdui-typo-headline mdui-hidden-xs"><?php echo $siteTitle; ?></a>
             <div class="mdui-toolbar-spacer"></div>
-            <button id="logout" onclick='window.open("https://www.wunote.cn")' mdui-tooltip="{content: '吴先森的笔记'}" class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white"><i class="mdui-icon material-icons">code</i></button>
+            <button onclick="search()" mdui-tooltip="{content: '搜索'}" class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white"><i class="mdui-icon material-icons">search</i></button>
+            <a target="_BLANK" href="https://www.wunote.cn" mdui-tooltip="{content: '吴先森的笔记'}" class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white"><i class="mdui-icon material-icons">code</i></a>
         </div>
     </header>
     <div class="mdui-drawer" id="main-drawer">

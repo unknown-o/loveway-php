@@ -28,58 +28,34 @@ if ($templateMode) {
         </div>
 
         <div class="mdui-card-actions">
-            <button onclick="submit();" style="border-radius: 8px" id='submitbtn' class="mdui-btn mdui-ripple mdui-btn-dense mdui-color-theme-accent mdui-float-right">立即登录</button>
+            <button onclick="submit()" style="border-radius: 8px" id='login-BTN' class="mdui-btn mdui-ripple mdui-btn-dense mdui-color-theme-accent mdui-float-right">立即登录</button>
         </div>
 
     </div>
 </div>
 <script>
     function submit() {
-        $("#submitbtn").attr("disabled", true);
-        setTimeout(function() {
-            $("#submitbtn").attr("disabled", false);
-        }, 200000);
-        var username = $("#username").val();
-        var password = $("#password").val();
-        $.ajax({
-            type: 'post',
-            url: '/api/admin.php',
-            data: {
-                mode: "login",
-                username: username,
-                password: password
-            },
-            dataType: 'text',
-            success: function(data) {
-                console.log(data)
-                data = JSON.parse(data);
-                if (data.code == 1) {
-                    mdui.snackbar({
-                        message: '登录成功！页面即将刷新！',
-                        position: 'right-top'
-                    });
-                    setTimeout(function() {
-                        location.reload()
-                    }, 1500);
-                } else {
-                    mdui.snackbar({
-                        message: data.msg,
-                        position: 'right-top'
-                    });
-                }
-                $("#username").val("");
-                $("#password").val("");
+        if (<?php if ($IMAGE_VERIFICATION) echo 'true';
+            else echo 'false'; ?>) {
+            imageVerification(function(answer) {
+                login(answer)
+            })
+        } else {
+            login('0000');
+        }
+    }
 
-            },
-            error: function(data) {
-                var errors = data.responseJSON;
-                $.each(errors.errors, function(key, value) {
-                    mdui.snackbar({
-                        message: "出现了一个未知错误",
-                        position: 'right-top'
-                    });
-                });
-            },
-        });
+    function login(vcode) {
+        var timestamp = this.timestamp = Date.parse(new Date()) / 1000;
+        requestApi("admin", {
+            mode: "login",
+            username: $("#username").val(),
+            password: $("#password").val(),
+            vcode: vcode,
+            timestamp: timestamp
+        }, function(){
+            $("#username").val("")
+            $("#password").val("")
+        }, true, true, "login-BTN")
     }
 </script>

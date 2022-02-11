@@ -1,1 +1,4 @@
 /phpMyAdmin/
+/nginx.htaccess
+/static/uploads/*.*
+!/static/uploads/.keep

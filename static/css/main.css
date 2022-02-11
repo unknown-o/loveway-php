@@ -1,0 +1,41 @@
+.copyright {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 10px 16px;
+    position: absolute;
+    bottom: 0;
+}
+
+a {
+    text-decoration: none
+}
+
+.a-upload {
+    padding: 2px 9px;
+    line-height: 28px;
+    position: relative;
+    cursor: pointer;
+    color: #fff;
+    border-radius: 4px;
+    overflow: hidden;
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+}
+
+.a-upload input {
+    position: absolute;
+    font-size: 100px;
+    right: 0;
+    top: 0;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    cursor: pointer
+}
+
+.a-upload:hover {
+    color: #FFFFFF;
+    background: #337ab7;
+    border-color: #204d74;
+    text-decoration: none;
+}

@@ -24,6 +24,9 @@ if ($templateMode) {
             <tr>
                 <th>表白标识符</th>
                 <th>被点赞的次数</th>
+                <th>表白人</th>
+                <th>表白给</th>
+                <th>时间</th>
                 <th>可用操作</th>
             </tr>
         </thead>
@@ -36,22 +39,30 @@ if ($templateMode) {
                 if ($stmt->execute()) {
                     while ($row = $stmt->fetch()) {
                         $flag = false;
+                        if ($REWRITE) {
+                            $pageURL = "/card/" . $row['id'];
+                        } else {
+                            $pageURL = '/?page=card&id=' . $row['id'];
+                        }
             ?>
                         <tr id="id-<?php echo $row['id'] ?>">
                             <td><?php echo $row['id'] ?></td>
                             <td><?php echo $row['favorite'] ?></td>
+                            <td><?php echo $row['confessor'] ?></td>
+                            <td><?php echo $row['to_who'] ?></td>
+                            <td><?php echo $row['time'] ?></td>
                             <td>
-                                <a id="delete-<?php echo $row['id'] ?>" mdui-tooltip="{content: '删除此表白'}" class="mdui-color-theme-accent mdui-btn mdui-btn-icon mdui-text-color-white" onclick="deleteF('<?php echo $row['id'] ?>')"><i class="mdui-icon material-icons">delete</i></a>
+                                <button id="delete-<?php echo $row['id'] ?>" mdui-tooltip="{content: '删除此表白'}" class="mdui-color-theme-accent mdui-btn mdui-btn-icon mdui-text-color-white" onclick="deleteF('<?php echo $row['id'] ?>')"><i class="mdui-icon material-icons">delete</i></button>
+                                <a id="to-<?php echo $row['id'] ?>" mdui-tooltip="{content: '去看看'}" class="mdui-color-theme-accent mdui-btn mdui-btn-icon mdui-text-color-white" href="<?php echo $pageURL ?>" target="_BLANK"><i class="mdui-icon material-icons">keyboard_arrow_right</i></a>
                             </td>
                         </tr>
             <?php
                     }
                 } else {
-                    return 'database connection failed';
+                    echo '抱歉！操作数据库时出现了一个致命错误！';
                 }
             } catch (Exception $e) {
-                return 'database connection failed';
-                //echo $e->getMessage();
+                echo '抱歉！连接数据库失败！';
             }
             ?>
         </tbody>

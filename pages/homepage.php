@@ -2,33 +2,16 @@
 if ($templateMode) {
     include('./includes/header.php');
 }
+
+if (empty($QueryArr['p'])) {
+    $nowPage = 0;
+} else {
+    $nowPage = intval($QueryArr['p']) - 1;
+}
+
+$searchString = "%" . htmlspecialchars($QueryArr['search']) . "%";
 ?>
 <script>
-    function RandomNumBoth(Min, Max) {
-        var Range = Max - Min;
-        var Rand = Math.random();
-        var num = Min + Math.round(Rand * Range);
-        return num;
-    }
-
-    function randomImage() {
-        var img = event.srcElement;
-        img.onerror = null;
-        var xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function() {
-            switch (xhr.readyState) {
-                case 4:
-                    if ((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304) {
-                        imgURL = 'https://img.llilii.cn/kagamine/' + JSON.parse(xhr.responseText)['file_name'][RandomNumBoth(0, JSON.parse(xhr.responseText)['file_num'])];
-                        img.src = imgURL;
-                    }
-                    break;
-            }
-        }
-        xhr.open('get', 'https://static.llilii.cn/json/img_list.json');
-        xhr.send(null);
-    }
-
     function like(id) {
         mdui.dialog({
             title: '请输入图片中的验证码',
@@ -56,7 +39,17 @@ if ($templateMode) {
 $flag = true;
 try {
     $pdo = pdoConnect();
-    $stmt = $pdo->prepare("select * from loveway_data ORDER BY time DESC");
+    $q = $pdo->query("SELECT count(*) from loveway_data");
+    $rows = $q->fetch();
+    $rowCount = $rows[0];
+    $stmt = $pdo->prepare("select * from loveway_data WHERE `confessor` like ? or `to_who` like ? or `introduction` like ? or `content` like ? or comment like ? ORDER BY time DESC limit ?,?");
+    $stmt->bindValue(1, $searchString);
+    $stmt->bindValue(2, $searchString);
+    $stmt->bindValue(3, $searchString);
+    $stmt->bindValue(4, $searchString);
+    $stmt->bindValue(5, $searchString);
+    $stmt->bindValue(6, $nowPage * $PAGEMAX, PDO::PARAM_INT);
+    $stmt->bindValue(7, $PAGEMAX, PDO::PARAM_INT);
     if ($stmt->execute()) {
         while ($row = $stmt->fetch()) {
             $flag = false;
@@ -95,9 +88,9 @@ try {
                     <?php
                     echo get_http_type() . $_SERVER['SERVER_NAME'];
                     if ($REWRITE) {
-                        echo "/article/" . $row['id'];
+                        echo "/card/" . $row['id'];
                     } else {
-                        echo '/?page=article&id=' . $row['id'];
+                        echo '/?page=card&id=' . $row['id'];
                     }
                     ?>"><i class="mdui-icon material-icons">share</i></a>
                     </a>
@@ -123,18 +116,20 @@ try {
                 </div>
             </div>
 
-    <?php
+<?php
         }
     } else {
-        return 'database connection failed';
+        echo '抱歉！操作数据库时出现了一个致命错误！';
     }
 } catch (Exception $e) {
-    return 'database connection failed';
+    echo '抱歉！连接数据库失败！';
     //echo $e->getMessage();
 }
+?>
+<br /><br />
+<?php
 if ($flag) {
-    ?>
-    <br /><br />
+?>
     <div class="mdui-card mdui-hoverable" style="border-radius: 16px">
         <div class="mdui-card-media">
             <img style="max-height: 2000px" onerror="randomImage()" src="" />
@@ -148,5 +143,15 @@ if ($flag) {
         </div>
     </div>
 <?php
+} else {
+    if ($searchString == "%%") {
+        if (($rowCount / $PAGEMAX) - 1 > $nowPage) {
+            echo '<a style="border-radius: 4px" href="?p=' . strval($nowPage + 2) . '" class="mdui-float-right mdui-btn mdui-btn-dense mdui-color-theme-accent mdui-ripple">下一页</a>';
+        }
+        echo ' <button onclick="jumpPage()" style="border-radius: 4px" class="mdui-float-right mdui-btn mdui-btn-dense">第' . strval($nowPage + 1) . '页</button> ';
+        if ($nowPage > 0) {
+            echo '<a style="border-radius: 4px" href="?p=' . strval($nowPage) . '" class="mdui-float-right mdui-btn mdui-btn-dense mdui-color-theme-accent mdui-ripple">上一页</a>';
+        }
+    }
 }
 ?>
