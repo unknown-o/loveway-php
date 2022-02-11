@@ -2,6 +2,12 @@
 if ($templateMode) {
     include('./includes/header.php');
 }
+
+if (empty($QueryArr['p'])) {
+    $nowPage = 0;
+} else {
+    $nowPage = intval($QueryArr['p']) - 1;
+}
 ?>
 <script>
     function RandomNumBoth(Min, Max) {
@@ -56,7 +62,9 @@ if ($templateMode) {
 $flag = true;
 try {
     $pdo = pdoConnect();
-    $stmt = $pdo->prepare("select * from loveway_data ORDER BY time DESC");
+    $stmt = $pdo->prepare("select * from loveway_data ORDER BY time DESC limit ?,?");
+    $stmt->bindValue(1, $nowPage * 20, PDO::PARAM_INT);
+    $stmt->bindValue(2, $PAGEMAX, PDO::PARAM_INT);
     if ($stmt->execute()) {
         while ($row = $stmt->fetch()) {
             $flag = false;
