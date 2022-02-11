@@ -51,10 +51,10 @@ function randomImage() {
         $.get("https://img.llilii.cn/imglist/kagamine.json", function(rdata) {
             window.imglist = rdata
             window.baseurl = "https://img.llilii.cn/kagamine/"
-            that.attr('src', window.baseurl + imglist[randomNumBoth(0, imgList.length - 1)])
+            that.attr('src', window.baseurl + imglist[randomNumBoth(0, imglist.length - 1)])
         })
     } else {
-        that.attr('src', window.baseurl + imglist[randomNumBoth(0, imgList.length - 1)])
+        that.attr('src', window.baseurl + imglist[randomNumBoth(0, imglist.length - 1)])
 
     }
     that.attr('onerror', null)
