@@ -13,6 +13,7 @@ error_reporting(0);
     <meta name="keywords" content="<?php echo getInfo('keywords') ?>">
     <meta name="description" content="<?php echo getInfo('description') ?>">
     <link rel="stylesheet" href="/static/mdui/css/mdui.min.css" />
+    <link rel="stylesheet" href="/static/css/main.css" />
     <script src="https://static.llilii.cn/libs/loveway/main.js"></script>
     <script src="/static/mdui/js/mdui.min.js"></script>
     <script src="/static/jquery.min.js"></script>
@@ -20,19 +21,6 @@ error_reporting(0);
     <script src="/static/jquery.md5.js"></script>
     <script src="/static/clipboard.min.js"></script>
     <script src="/static/main.js"></script>
-    <style>
-        .copyright {
-            box-sizing: border-box;
-            width: 100%;
-            padding: 10px 16px;
-            position: absolute;
-            bottom: 0;
-        }
-
-        a {
-            text-decoration: none
-        }
-    </style>
 </head>
 
 <body class="mdui-drawer-body-left mdui-bottom-nav-fixed mdui-appbar-with-toolbar mdui-theme-primary-pink mdui-theme-accent-pink mdui-theme-layout-auto mdui-loaded">
