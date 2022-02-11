@@ -69,9 +69,10 @@ if ($templateMode) {
                 }
                 $("#username").val("");
                 $("#password").val("");
-
+                $("#submitbtn").attr("disabled", false);
             },
             error: function(data) {
+                $("#submitbtn").attr("disabled", false);
                 var errors = data.responseJSON;
                 $.each(errors.errors, function(key, value) {
                     mdui.snackbar({
