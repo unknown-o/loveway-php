@@ -4,6 +4,10 @@ session_start();
 include('../config.php');
 include('../includes/function.php');
 
+if(!$UPLOAD_IMAGE){
+    exit('{"code":-8, "msg":"上传失败！上传接口被关闭！", "path":""}');
+}
+
 $filename = $_FILES['file']['name'];
 if ($filename) {
     $postfix = ['.png', '.jpg', '.jpeg'];
