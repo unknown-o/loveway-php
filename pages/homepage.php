@@ -8,6 +8,8 @@ if (empty($QueryArr['p'])) {
 } else {
     $nowPage = intval($QueryArr['p']) - 1;
 }
+
+$searchString = "%" . htmlspecialchars($QueryArr['search']) . "%";
 ?>
 <script>
     function RandomNumBoth(Min, Max) {
@@ -62,8 +64,11 @@ if (empty($QueryArr['p'])) {
 $flag = true;
 try {
     $pdo = pdoConnect();
+    $q = $pdo->query("SELECT count(*) from loveway_data");
+    $rows = $q->fetch();
+    $rowCount = $rows[0];
     $stmt = $pdo->prepare("select * from loveway_data ORDER BY time DESC limit ?,?");
-    $stmt->bindValue(1, $nowPage * 20, PDO::PARAM_INT);
+    $stmt->bindValue(1, $nowPage * $PAGEMAX, PDO::PARAM_INT);
     $stmt->bindValue(2, $PAGEMAX, PDO::PARAM_INT);
     if ($stmt->execute()) {
         while ($row = $stmt->fetch()) {
@@ -131,7 +136,7 @@ try {
                 </div>
             </div>
 
-    <?php
+<?php
         }
     } else {
         return 'database connection failed';
@@ -140,9 +145,11 @@ try {
     return 'database connection failed';
     //echo $e->getMessage();
 }
+?>
+<br /><br />
+<?php
 if ($flag) {
-    ?>
-    <br /><br />
+?>
     <div class="mdui-card mdui-hoverable" style="border-radius: 16px">
         <div class="mdui-card-media">
             <img style="max-height: 2000px" onerror="randomImage()" src="" />
@@ -156,5 +163,15 @@ if ($flag) {
         </div>
     </div>
 <?php
+} else {
+    if ($searchString == "%%") {
+        if (($rowCount / $PAGEMAX) - 1 > $nowPage) {
+            echo '<a style="border-radius: 4px" href="?p=' . strval($nowPage + 2) . '" class="mdui-float-right mdui-btn mdui-btn-dense mdui-color-theme-accent mdui-ripple">下一页</a>';
+        }
+        echo ' <button onclick="jumpPage()" style="border-radius: 4px" class="mdui-float-right mdui-btn mdui-btn-dense">第' . strval($nowPage + 1) . '页</button> ';
+        if ($nowPage > 0) {
+            echo '<a style="border-radius: 4px" href="?p=' . strval($nowPage) . '" class="mdui-float-right mdui-btn mdui-btn-dense mdui-color-theme-accent mdui-ripple">上一页</a>';
+        }
+    }
 }
 ?>

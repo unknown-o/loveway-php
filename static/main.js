@@ -37,3 +37,16 @@ function requestApi(functionName, args, callback, showResults, refreshPageWhenSu
         },
     })
 }
+
+function jumpPage() {
+    mdui.prompt('你要跳转到第几页？', '快速翻页',
+        function (value) {
+            setTimeout(function () {
+                $.pjax({
+                    url: '?p=' + value,
+                    container: '#pjax-container'
+                });
+            }, 10)
+        }
+    )
+}
