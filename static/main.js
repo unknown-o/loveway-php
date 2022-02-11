@@ -38,7 +38,7 @@ function requestApi(functionName, args, callback, showResults, refreshPageWhenSu
     })
 }
 
-function RandomNumBoth(Min, Max) {
+function randomNumBoth(Min, Max) {
     var Range = Max - Min;
     var Rand = Math.random();
     var num = Min + Math.round(Rand * Range);
@@ -46,21 +46,18 @@ function RandomNumBoth(Min, Max) {
 }
 
 function randomImage() {
-    var img = event.srcElement;
-    img.onerror = null;
-    var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function() {
-        switch (xhr.readyState) {
-            case 4:
-                if ((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304) {
-                    imgURL = 'https://img.llilii.cn/kagamine/' + JSON.parse(xhr.responseText)['file_name'][RandomNumBoth(0, JSON.parse(xhr.responseText)['file_num'])];
-                    img.src = imgURL;
-                }
-                break;
-        }
+    var that = $(window.event.target)
+    if (window.imglist == undefined) {
+        $.get("https://img.llilii.cn/imglist/kagamine.json", function(rdata) {
+            window.imglist = rdata
+            window.baseurl = "https://img.llilii.cn/kagamine/"
+            that.attr('src', window.baseurl + imglist[randomNumBoth(0, imgList.length - 1)])
+        })
+    } else {
+        that.attr('src', window.baseurl + imglist[randomNumBoth(0, imgList.length - 1)])
+
     }
-    xhr.open('get', 'https://static.llilii.cn/json/img_list.json');
-    xhr.send(null);
+    that.attr('onerror', null)
 }
 
 function imageVerification(callback) {
