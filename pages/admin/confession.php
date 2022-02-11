@@ -39,6 +39,11 @@ if ($templateMode) {
                 if ($stmt->execute()) {
                     while ($row = $stmt->fetch()) {
                         $flag = false;
+                        if ($REWRITE) {
+                            $pageURL = "/card/" . $row['id'];
+                        } else {
+                            $pageURL = '/?page=card&id=' . $row['id'];
+                        }
             ?>
                         <tr id="id-<?php echo $row['id'] ?>">
                             <td><?php echo $row['id'] ?></td>
@@ -47,7 +52,8 @@ if ($templateMode) {
                             <td><?php echo $row['to_who'] ?></td>
                             <td><?php echo $row['time'] ?></td>
                             <td>
-                                <a id="delete-<?php echo $row['id'] ?>" mdui-tooltip="{content: '删除此表白'}" class="mdui-color-theme-accent mdui-btn mdui-btn-icon mdui-text-color-white" onclick="deleteF('<?php echo $row['id'] ?>')"><i class="mdui-icon material-icons">delete</i></a>
+                                <button id="delete-<?php echo $row['id'] ?>" mdui-tooltip="{content: '删除此表白'}" class="mdui-color-theme-accent mdui-btn mdui-btn-icon mdui-text-color-white" onclick="deleteF('<?php echo $row['id'] ?>')"><i class="mdui-icon material-icons">delete</i></button>
+                                <a id="to-<?php echo $row['id'] ?>" mdui-tooltip="{content: '去看看'}" class="mdui-color-theme-accent mdui-btn mdui-btn-icon mdui-text-color-white" href="<?php echo $pageURL ?>" target="_BLANK"><i class="mdui-icon material-icons">keyboard_arrow_right</i></a>
                             </td>
                         </tr>
             <?php
