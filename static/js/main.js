@@ -50,8 +50,8 @@ function randomImage(that) {
     if (window.imglist == undefined) {
         $.get("https://img.llilii.cn/imglist/kagamine.json", function(rdata) {
             window.imglist = rdata
-            window.base_url_origin = imglist['base_url']['origin']['private'][randomNumBoth(0, parseInt(imglist['base_url']['compression']['private'].length) - 1)]
-            window.base_url_compression = imglist['base_url']['compression']['private'][randomNumBoth(0, parseInt(imglist['base_url']['compression']['private'].length) - 1)]
+            window.base_url_origin = imglist['base_url']['origin']['public'][randomNumBoth(0, parseInt(imglist['base_url']['compression']['public'].length) - 1)]
+            window.base_url_compression = imglist['base_url']['compression']['public'][randomNumBoth(0, parseInt(imglist['base_url']['compression']['public'].length) - 1)]
 
             image_id = randomNumBoth(0, parseInt(imglist['info']['count']) - 1)
             image_name = imglist['filename'][image_id]
