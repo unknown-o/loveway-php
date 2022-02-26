@@ -13,8 +13,6 @@ $DB_PASS = "BT_DB_PASSWORD";
 $ADMIN_USER = "kagamine";
 //管理后台密码
 $ADMIN_PASS = "kagamine1234";
-//是否开启图像验证码验证
-$IMAGE_VERIFICATION = true;
 //是否开启伪静态（请先配置伪静态规则后再开启，否则可能导致404）
 $REWRITE = false;
 //随便一个字符串

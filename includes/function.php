@@ -1,4 +1,6 @@
 <?php
+$IMAGE_VERIFICATION = true;
+
 function pdoConnect()
 {
     return new PDO('mysql:host=' . $GLOBALS['DB_HOST'] . ';dbname=' . $GLOBALS['DB_NAME'], $GLOBALS['DB_USER'], $GLOBALS['DB_PASS']);

@@ -10,7 +10,6 @@
 error_reporting(0);
 include('./config.php');
 include('./includes/function.php');
-$IMAGE_VERIFICATION = true;
 if ($REWRITE) {
     $pageName = explode("/", $_GET['uri'])[1];
     $cardID = explode("/", $_GET['uri'])[2];
