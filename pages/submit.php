@@ -34,7 +34,7 @@ if ($templateMode) {
                     </div>
                     <div class="mdui-col-md-2 mdui-col-sm-2 mdui-col-xs-5">
                         <a href="javascript:;" id="upload" class="mdui-color-theme-accent a-upload mr10">
-                            <input type="file" name="" accept=".png,.jpge,.jpg" id="upload-image">选择图片
+                            <input type="file" name="" accept=".png,.jpeg,.jpg" id="upload-image">选择图片
                         </a>
                     </div>
                 </div>
@@ -78,9 +78,9 @@ if ($templateMode) {
             max_size = <?php echo $MAX_UPLOAD_SIZE * 1024; ?>;
             file = $(this).prop('files')[0]
             ext = $(this).val().substring($(this).val().lastIndexOf(".") + 1).toLowerCase()
-            allow_ext = ["jpg", "png", "jpge"];
+            allow_ext = ["jpg", "png", "jpeg"];
             if (allow_ext.indexOf(ext) == -1) {
-                mdui.alert("上传失败！不允许的图片格式！本站仅允许jpg、png、jpge格式的图片！")
+                mdui.alert("上传失败！不允许的图片格式！本站仅允许jpg、png、jpeg格式的图片！")
                 return false
             }
             if (file.size > max_size) {
