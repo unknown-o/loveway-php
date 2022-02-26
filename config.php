@@ -21,7 +21,7 @@ $VERIFICATION_KEY = "KAGAMINE YES!";
 $UPLOAD_PATH = "../static/uploads/";
 //上传文件API接口（默认可以不用动
 $UPLOAD_API = "/api/upload.php";
-//最大上传文件大小
+//最大上传文件大小（KB）
 $MAX_UPLOAD_SIZE = 200;
 //是否允许上传文件（可能存在安全风险！
 $UPLOAD_IMAGE = true;

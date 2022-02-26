@@ -73,7 +73,12 @@ if ($templateMode) {
         }
 
         $("#upload").on("change", "input[type='file']", function() {
+            max_size = <?php echo $MAX_UPLOAD_SIZE * 1024; ?>;
             file = $(this).prop('files')[0]
+            if (file.size > max_size) {
+                mdui.alert("上传失败！图片过大！本站允许上传的最大大小：" + (<?php echo $MAX_UPLOAD_SIZE; ?>).toString()+"KB")
+                return false
+            }
             imageVerification(function(answer) {
                 $('#upload-image').attr("disabled", "disabled")
                 $("#isLoading").show(100)
