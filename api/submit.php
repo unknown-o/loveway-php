@@ -30,7 +30,8 @@ if (md5($all) != $_POST['key']) {
 try {
     $pdo = pdoConnect();
     $stmt = $pdo->prepare("insert into loveway_data(id,favorite,confessor,contact,time,to_who,introduction,content,image,comment)values(?,?,?,?,?,?,?,?,?,?)");
-    $stmt->bindValue(1, rand(100000000, 999999999));
+    $love_id = rand(100000000, 999999999);
+    $stmt->bindValue(1, $love_id);
     $stmt->bindValue(2, 0);
     $stmt->bindValue(3, $confessor);
     $stmt->bindValue(4, $contact);
@@ -41,7 +42,7 @@ try {
     $stmt->bindValue(9, $image);
     $stmt->bindValue(10, "[]");
     if ($stmt->execute()) {
-        exit('{"code":1,"msg":"表白信息提交成功！"}');
+        exit('{"code":1,"id":"' . strval($love_id) . '","msg":"表白信息提交成功！"}');
     } else {
         exit('{"code":-2,"msg":"抱歉，出现了一个未知错误！请与管理员联系！"}');
     }

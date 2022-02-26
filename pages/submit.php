@@ -81,7 +81,7 @@ if ($templateMode) {
             allow_ext = ["jpg", "png", "jpge"];
             if (allow_ext.indexOf(ext) == -1) {
                 mdui.alert("上传失败！不允许的图片格式！本站仅允许jpg、png、jpge格式的图片！")
-                return false 
+                return false
             }
             if (file.size > max_size) {
                 mdui.alert("上传失败！图片过大！本站允许上传的最大大小：" + (<?php echo $MAX_UPLOAD_SIZE; ?>).toString() + "KB")
@@ -155,14 +155,26 @@ if ($templateMode) {
                 introduceTA: introduceTA,
                 toTA: toTA,
                 vCode: vCode
-            }, function(data) {
+            }, function(rdata) {
                 $("#qq").val("");
                 $("#name").val("");
                 $("#taName").val("");
                 $("#image").val("");
                 $("#introduceTA").val("");
                 $("#toTA").val("");
-            }, true, true, "#submitbtn")
+                redirect_url = <?php
+                    if ($REWRITE) {
+                        echo "'/card/'+rdata.id";
+                    } else {
+                        echo "'/?page=card&id='+rdata.id";
+                    }
+                    ?>
+
+                $.pjax({
+                    url: redirect_url,
+                    container: '#pjax-container'
+                });
+            }, true, false, "#submitbtn")
         }
     </script>
 </div>
