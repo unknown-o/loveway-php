@@ -93,10 +93,14 @@ if ($templateMode) {
                         $("#isLoading").hide(100)
                         $("#image").val(rdata.path)
                         $('#upload-image').removeAttr("disabled")
-                        mdui.snackbar({
-                            message: rdata.msg,
-                            position: 'right-top',
-                        })
+                        if (rdata.code == 1) {
+                            mdui.snackbar({
+                                message: rdata.msg,
+                                position: 'right-top',
+                            })
+                        } else {
+                            mdui.alert(rdata.msg)
+                        }
                     },
                     error: function(data) {
                         $("#image").val("")
