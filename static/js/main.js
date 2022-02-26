@@ -45,17 +45,24 @@ function randomNumBoth(Min, Max) {
     return num;
 }
 
-function randomImage() {
+function randomImage(that) {
     var that = $(window.event.target)
     if (window.imglist == undefined) {
         $.get("https://img.llilii.cn/imglist/kagamine.json", function(rdata) {
             window.imglist = rdata
-            window.baseurl = "https://img.llilii.cn/kagamine/"
-            that.attr('src', window.baseurl + imglist[randomNumBoth(0, imglist.length - 1)])
+            window.base_url_origin = imglist['base_url']['origin']['private'][randomNumBoth(0, parseInt(imglist['base_url']['compression']['private'].length) - 1)]
+            window.base_url_compression = imglist['base_url']['compression']['private'][randomNumBoth(0, parseInt(imglist['base_url']['compression']['private'].length) - 1)]
+
+            image_id = randomNumBoth(0, parseInt(imglist['info']['count']) - 1)
+            image_name = imglist['filename'][image_id]
+            that.attr('src', base_url_compression + "/" + image_name)
+            that.attr('origin-src', window.base_url_origin + "/" + image_name)
         })
     } else {
-        that.attr('src', window.baseurl + imglist[randomNumBoth(0, imglist.length - 1)])
-
+        image_id = randomNumBoth(0, parseInt(imglist['info']['count']) - 1)
+        image_name = imglist['filename'][image_id]
+        that.attr('src', base_url_compression + "/" + image_name)
+        that.attr('origin-src', window.base_url_origin + "/" + image_name)
     }
     that.attr('onerror', null)
 }
