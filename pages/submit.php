@@ -33,7 +33,9 @@ if ($templateMode) {
                         <textarea id="image" class="mdui-textfield-input" placeholder="https://kagamine.top/img.png"></textarea>
                     </div>
                     <div class="mdui-col-md-2 mdui-col-sm-2 mdui-col-xs-5">
-                        <a href="javascript:;" id="upload" class="mdui-color-theme-accent a-upload mr10"><input type="file" name="" id="upload-image">选择图片</a>
+                        <a href="javascript:;" id="upload" class="mdui-color-theme-accent a-upload mr10">
+                            <input type="file" name="" accept=".png,.jpge,.jpg" id="upload-image">选择图片
+                        </a>
                     </div>
                 </div>
             <?php
@@ -75,8 +77,14 @@ if ($templateMode) {
         $("#upload").on("change", "input[type='file']", function() {
             max_size = <?php echo $MAX_UPLOAD_SIZE * 1024; ?>;
             file = $(this).prop('files')[0]
+            ext = $(this).val().substring($(this).val().lastIndexOf(".") + 1).toLowerCase()
+            allow_ext = ["jpg", "png", "jpge"];
+            if (allow_ext.indexOf(ext) == -1) {
+                mdui.alert("上传失败！不允许的图片格式！本站仅允许jpg、png、jpge格式的图片！")
+                return false 
+            }
             if (file.size > max_size) {
-                mdui.alert("上传失败！图片过大！本站允许上传的最大大小：" + (<?php echo $MAX_UPLOAD_SIZE; ?>).toString()+"KB")
+                mdui.alert("上传失败！图片过大！本站允许上传的最大大小：" + (<?php echo $MAX_UPLOAD_SIZE; ?>).toString() + "KB")
                 return false
             }
             imageVerification(function(answer) {
