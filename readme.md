@@ -22,7 +22,7 @@
 
 Github仓库：[https://github.com/unknown-o/loveway-php](https://github.com/unknown-o/loveway-php)
 
-Gitee仓库：https://gitee.com/mr-wu-code/loveway-php
+Gitee仓库：[https://gitee.com/mr-wu-code/loveway-php](https://gitee.com/mr-wu-code/loveway-php)
 
 ### 这是一个非常简洁的说明
 
@@ -64,19 +64,11 @@ Gitee仓库：https://gitee.com/mr-wu-code/loveway-php
 
 修改**config.php**中的**ADMIN_USER**和**ADMIN_PASS**变量以修改默认账号密码
 
-#### 伪静态规则仅支持Nginx
-
-因为懒得装**Apache**环境，所以目前伪静态规则仅写了**Nginx**的
-
-所以....如果有大佬的话，**欢迎**帮忙写哦（写完可以提交个PR，2333）
-
 #### 可以删除的文件
 
 如果你**安装完成**后，您**可以删除**以下文件
 
 **auto_install.json**（宝塔自动部署文件）
-
-**GPL2.0 Explain.md**（GPL2.0人话版解释）
 
 **import.sql**（初始数据库）
 
