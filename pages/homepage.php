@@ -66,7 +66,7 @@ try {
                     if (!empty($row['image'])) {
                     ?>
                         <div v-if="data.image != ''">
-                            <img style="max-height: 2000px" onerror="randomImage()" src="<?php echo $row['image']; ?>" />
+                            <img style="max-height: 2000px" onclick="if($(this).attr('origin-src') == undefined) { window.open($(this).attr('src')) } else { window.open($(this).attr('origin-src')) }" onerror="randomImage()" src="<?php echo $row['image']; ?>" />
                         </div>
                     <?php
                     } else {

@@ -32,7 +32,7 @@ try {
                 <?php
                 if (!empty($row['image'])) {
                 ?>
-                    <img style="max-height: 1000px" onerror="randomImage()" src="<?php echo $row['image']; ?>" />
+                    <img style="max-height: 1000px" onclick="if($(this).attr('origin-src') == undefined) { window.open($(this).attr('src')) } else { window.open($(this).attr('origin-src')) }" onerror="randomImage()" src="<?php echo $row['image']; ?>" />
                 <?php
                 } else {
                 ?>
