@@ -110,3 +110,14 @@ function jumpPage() {
         }
     )
 }
+
+function logout() {
+    setCookie('loveway_token', "kagamine yes!", -1);
+    mdui.snackbar({
+        message: "登出成功！",
+        position: 'right-top'
+    });
+    $.pjax.reload({
+        container: "#pjax-container"
+    })
+}

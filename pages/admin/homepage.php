@@ -57,17 +57,6 @@ if ($ADMIN_PASS == "kagamine1234") {
 }
 ?>
 <script>
-    function logout() {
-        setCookie('loveway_token', "kagamine yes!", -1);
-        mdui.snackbar({
-            message: "登出成功！",
-            position: 'right-top'
-        });
-        $.pjax.reload({
-            container: "#pjax-container"
-        })
-    }
-
     function setCookie(cname, cvalue, exdays) {
         var d = new Date();
         d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));

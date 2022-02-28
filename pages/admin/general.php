@@ -64,17 +64,6 @@ if ($templateMode) {
         </button>
     </div>
     <script>
-        function logout() {
-            setCookie('loveway_token', "kagamine yes!", -1);
-            mdui.snackbar({
-                message: "登出成功！页面即将刷新！",
-                position: 'right-top'
-            });
-            setTimeout(function() {
-                location.reload()
-            }, 1500);
-        }
-
         function setCookie(cname, cvalue, exdays) {
             var d = new Date();
             d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
