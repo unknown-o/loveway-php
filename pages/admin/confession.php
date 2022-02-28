@@ -71,8 +71,7 @@ if ($templateMode) {
 
 <script>
     function deleteF(id) {
-        requestApi("admin", {
-            mode: "delete",
+        requestApi("delete_confession", {
             id: id
         }, false, true, true, "")
     }
