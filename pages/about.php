@@ -6,7 +6,7 @@ if ($templateMode) {
 <br /><br />
 <div class="mdui-card mdui-hoverable" style="border-radius: 16px">
     <div class="mdui-card-media">
-        <img style="max-height: 1000px" src="https://static.llilii.cn/images/kagamine/32639516_p2.jpg" />
+        <img style="max-height: 1000px" src="https://img.llilii.cn/compression/vocaloid/kagamine/32639516_p2.jpg" />
     </div>
     <div class="mdui-card-primary">
         <div class="mdui-card-primary-title">关于本站</div>
