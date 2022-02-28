@@ -56,10 +56,10 @@ if ($templateMode) {
     </div>
 
     <div class="mdui-card-actions">
-        <button id="submitbtn" style="border-radius: 8px" class="mdui-btn mdui-color-theme-accent mdui-ripple mdui-float-right" onclick="submit()">
+        <button id="submit-btn" style="border-radius: 8px" class="mdui-btn mdui-color-theme-accent mdui-ripple mdui-float-right" onclick="submit()">
             保存数据
         </button>
-        <button id="submitbtn" style="border-radius: 8px" class="mdui-btn mdui-color-theme-accent mdui-ripple mdui-float-right" onclick="getHelp()">
+        <button id="help-btn" style="border-radius: 8px" class="mdui-btn mdui-color-theme-accent mdui-ripple mdui-float-right" onclick="getHelp()">
             使用帮助
         </button>
     </div>
@@ -87,13 +87,12 @@ if ($templateMode) {
             for (let i = 0; i < configArr.length; i++) {
                 if ($("#" + configArr[i]).val() != $("#" + configArr[i]).attr('placeholder')) {
                     value = $("#" + configArr[i]).val();
-                    request(configArr[i], value);
+                    requestApi("update_config", {
+                        name: configArr[i],
+                        value: value
+                    }, false, true, false, "submit-btn")
                 }
             }
-            mdui.snackbar({
-                message: "提交中...",
-                position: 'right-top'
-            });
         }
 
         function getHelp() {
