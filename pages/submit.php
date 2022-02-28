@@ -118,7 +118,6 @@ if ($templateMode) {
                     error: function(data) {
                         $("#image").val("")
                         $('#upload-image').removeAttr("disabled")
-                        $(disableBtnId).attr("disabled", false)
                         mdui.snackbar({
                             message: "请求接口[upload]时，出现了一个致命错误！",
                             position: 'right-top'
