@@ -35,25 +35,19 @@ if ($templateMode) {
 </div>
 <script>
     function submit() {
-        if (<?php if ($IMAGE_VERIFICATION) echo 'true';
-            else echo 'false'; ?>) {
-            imageVerification(function(answer) {
-                login(answer)
-            })
-        } else {
-            login('0000');
-        }
+        imageVerification(function(answer) {
+            login(answer)
+        })
     }
 
     function login(vcode) {
         var timestamp = this.timestamp = Date.parse(new Date()) / 1000;
-        requestApi("admin", {
-            mode: "login",
+        requestApi("login", {
             username: $("#username").val(),
             password: $("#password").val(),
             vcode: vcode,
             timestamp: timestamp
-        }, function(){
+        }, function() {
             $("#username").val("")
             $("#password").val("")
         }, true, true, "login-BTN")
