@@ -109,7 +109,7 @@ try {
             <div class="mdui-card-actions">
                 <a class="copy mdui-btn mdui-btn-icon mdui-float-right" href="javascript:void(0);" data-clipboard-text="
                             <?php
-                            echo get_http_type() . $_SERVER['SERVER_NAME'];
+                            echo get_http_type() . $_SERVER['HTTP_HOST'];
                             if ($REWRITE) {
                                 echo "/card/" . $row['id'];
                             } else {
