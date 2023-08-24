@@ -155,6 +155,7 @@ if ($templateMode) {
                 toTA: toTA,
                 vCode: vCode
             }, function(rdata) {
+                if (rdata.id === undefined) return;
                 $("#qq").val("");
                 $("#name").val("");
                 $("#taName").val("");
