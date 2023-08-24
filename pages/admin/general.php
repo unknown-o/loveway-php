@@ -47,11 +47,11 @@ if ($templateMode) {
         </div>
         <div class="mdui-textfield">
             <label class="mdui-textfield-label">自定义页面（请使用html格式、本站右侧应用栏的第三个列表）</label>
-            <textarea id="more_content" class="mdui-textfield-input" rows="4" placeholder="<?php echo getInfo('more_content') ?>"><?php echo getInfo('more_content') ?></textarea>
+            <textarea id="more_content" class="mdui-textfield-input" rows="4" placeholder="<?php echo htmlspecialchars(getInfo('more_content')) ?>"><?php echo getInfo('more_content') ?></textarea>
         </div>
         <div class="mdui-textfield">
             <label class="mdui-textfield-label">关于本站页面（请使用html格式）</label>
-            <textarea id="about_content" class="mdui-textfield-input" rows="4" placeholder="<?php echo getInfo('about_content') ?>"><?php echo getInfo('about_content') ?></textarea>
+            <textarea id="about_content" class="mdui-textfield-input" rows="4" placeholder="<?php echo htmlspecialchars(getInfo('about_content')) ?>"><?php echo getInfo('about_content') ?></textarea>
         </div>
     </div>
 
